@@ -22,6 +22,7 @@
 @property (assign, nonatomic) NSUInteger pageSize;
 @property (assign, nonatomic) NSUInteger fetchThreshold;
 @property (assign, nonatomic) NSInteger maxNumberResults;
+@property (weak, nonatomic) UITableView *tableView;
 + (instancetype)dataSource;
 - (void)fetchReposForSearchTerm:(NSString *)searchTerm;
 @end

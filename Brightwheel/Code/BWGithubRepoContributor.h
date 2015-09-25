@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface BWGithubRepoContributor : NSObject
-
+@property (strong, nonatomic) NSString *name;
+@property (assign, nonatomic) NSUInteger contributions;
++ (instancetype)contributorWithDictionary:(NSDictionary *)contributorDictionary;
 @end
