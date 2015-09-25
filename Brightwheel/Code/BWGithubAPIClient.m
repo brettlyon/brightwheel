@@ -7,6 +7,7 @@
 //
 
 #import "BWGithubAPIClient.h"
+#import "BWGithubRepo.h"
 
 #define ACCEPT_HEADER                   @"Accept"
 #define V3_ACCEPT_HEADER_VALUE          @"application/vnd.github.v3+json"
@@ -39,10 +40,13 @@
             NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializationError];
             if (serializationError) {
                 // If there was an error deserializing the JSON, then execute the completion block with the error and a nil value for the result
-                if (completion != nil) {
-                    completion(error, nil);
+                if (serializationError) {
+                    if (completion != nil) completion(error, nil);
                 } else {
-                    
+                    // No error, objectify the repos and hand them back in the completion block
+                    NSArray *rawReposArray = rawResults[@"items"];
+                    NSArray *repos = [BWGithubRepo reposFromArray:rawReposArray];
+                    if (completion != nil) completion(nil, repos);
                 }
                 
             }
