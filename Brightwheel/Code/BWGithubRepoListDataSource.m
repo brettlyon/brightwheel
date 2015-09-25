@@ -33,17 +33,6 @@ static const NSInteger kDefaultMaxNumberResults = -1;
 }
 
 - (void)fetchReposForSearchTerm:(NSString *)searchTerm {
-
-    
-    BWGithubRepo *repo = [[BWGithubRepo alloc] init];
-    repo.fullName = @"twbs/bootstrap";
-    [BWGithubAPIClient topContributorForRepo:repo completion:^(NSError *error, BWGithubRepoContributor *topContributor) {
-        if (error) {
-            
-        }
-    }];
-    
-    /*
     if (![searchTerm isEqualToString:self.previousSearchTerm]) {
         self.previousSearchTerm = searchTerm;
         [self reset];
@@ -78,17 +67,21 @@ static const NSInteger kDefaultMaxNumberResults = -1;
                         }];
                     }
                     
-                    dispatch_group_wait(contributorFetchGroup, DISPATCH_TIME_FOREVER);
+                    dispatch_group_notify(contributorFetchGroup, dispatch_get_main_queue(),^{
+                        // Won't get here until everything has finished
+                        [weakSelf.repos addObjectsFromArray:reposToAdd];
+                        [weakSelf.tableView reloadData];
+                    });
                     
-                    [weakSelf.repos addObjectsFromArray:reposToAdd];
-                    [weakSelf.tableView reloadData];
+                    //dispatch_group_wait(contributorFetchGroup, DISPATCH_TIME_FOREVER);
+                    
+                    
                 }
                 
                 weakSelf.fetchPending = NO;
             }];
         }];
     }
-    */
 }
 
 #pragma mark - Private helper methods
