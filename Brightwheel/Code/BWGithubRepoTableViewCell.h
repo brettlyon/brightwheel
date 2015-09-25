@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface BWGithubRepoTableViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *repoNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *starsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *topContributorLabel;
 @end

@@ -9,6 +9,13 @@
 #import "BWGithubRepoListDataSource.h"
 #import "BWGithubAPIClient.h"
 #import "BWGithubRepo.h"
+#import "BWGithubErrorTableViewCell.h"
+#import "BWGithubRepoTableViewCell.h"
+#import "BWGithubLoadingTableViewCell.h"
+
+#define REPO_CELL_REUSE_ID      @"repo_cell"
+#define LOADING_CELL_REUSE_ID   @"loading_cell"
+#define ERROR_CELL_REUSE_ID     @"error_cell"
 
 @interface BWGithubRepoListDataSource ()
 @property (assign, nonatomic) BOOL isInErrorState;
@@ -30,6 +37,23 @@ static const NSInteger kDefaultMaxNumberResults = -1;
 
 + (instancetype)dataSource {
     return [[self alloc] init];
+}
+
+- (void)setTableView:(UITableView *)tableView {
+    _tableView = tableView;
+    
+    // Register cells xibs with the table view
+    NSString *repoCellName = NSStringFromClass([BWGithubRepoTableViewCell class]);
+    UINib *repoCellNib = [UINib nibWithNibName:repoCellName bundle:nil];
+    [_tableView registerNib:repoCellNib forCellReuseIdentifier:REPO_CELL_REUSE_ID];
+    
+    NSString *loadingCellName = NSStringFromClass([BWGithubLoadingTableViewCell class]);
+    UINib *loadingCellNib = [UINib nibWithNibName:loadingCellName bundle:nil];
+    [_tableView registerNib:loadingCellNib forCellReuseIdentifier:LOADING_CELL_REUSE_ID];
+    
+    NSString *errorCellName = NSStringFromClass([BWGithubErrorTableViewCell class]);
+    UINib *errorCellNib = [UINib nibWithNibName:errorCellName bundle:nil];
+    [_tableView registerNib:errorCellNib forCellReuseIdentifier:ERROR_CELL_REUSE_ID];
 }
 
 - (void)fetchReposForSearchTerm:(NSString *)searchTerm {
@@ -72,10 +96,6 @@ static const NSInteger kDefaultMaxNumberResults = -1;
                         [weakSelf.repos addObjectsFromArray:reposToAdd];
                         [weakSelf.tableView reloadData];
                     });
-                    
-                    //dispatch_group_wait(contributorFetchGroup, DISPATCH_TIME_FOREVER);
-                    
-                    
                 }
                 
                 weakSelf.fetchPending = NO;
