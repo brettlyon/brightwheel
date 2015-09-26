@@ -10,6 +10,7 @@
 #import "BWGithubRepoListDataSource.h"
 
 @interface BWStarredGithubRepoViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) BWGithubRepoListDataSource *dataSource;
 @end
 
@@ -19,6 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.dataSource = [BWGithubRepoListDataSource dataSource];
+    self.dataSource.tableView = self.tableView;
     [self.dataSource fetchReposForSearchTerm:@""];
 }
 

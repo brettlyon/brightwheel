@@ -15,8 +15,23 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mrY-nd-95d">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mrY-nd-95d" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="LbS-Kg-5Yg"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="mrY-nd-95d" secondAttribute="bottom" id="T3U-lf-POD"/>
+                            <constraint firstAttribute="trailing" secondItem="mrY-nd-95d" secondAttribute="trailing" id="cR8-dB-hps"/>
+                            <constraint firstItem="mrY-nd-95d" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="yoK-HP-86k"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="mrY-nd-95d" id="ISQ-u6-bil"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

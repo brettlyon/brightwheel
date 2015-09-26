@@ -11,6 +11,7 @@
 #define REPO_FULL_NAME_KEY      @"full_name"
 #define REPO_NAME_KEY           @"name"
 #define REPO_DESCRIPTION_KEY    @"description"
+#define REPO_STARS_LABEL        @"watchers"
 
 @implementation BWGithubRepo
 
@@ -28,6 +29,7 @@
     repo.name = repoDictionary[REPO_NAME_KEY];
     repo.fullName = repoDictionary[REPO_FULL_NAME_KEY];
     repo.repoDescription = repoDictionary[REPO_DESCRIPTION_KEY];
+    repo.numStars = [repoDictionary[REPO_STARS_LABEL] integerValue];
     return repo;
 }
 

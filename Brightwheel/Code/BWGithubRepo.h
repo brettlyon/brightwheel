@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSString *fullName;
 @property (strong, nonatomic) NSString *repoDescription;
 @property (strong, nonatomic) BWGithubRepoContributor *topContributor;
+@property (assign, nonatomic) NSUInteger numStars;
 + (NSArray *)reposFromArray:(NSArray *)repoArray;
 + (instancetype)repoFromDictionary:(NSDictionary *)repoDictionary;
 @end
