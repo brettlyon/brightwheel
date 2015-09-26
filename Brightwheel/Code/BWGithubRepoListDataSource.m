@@ -78,7 +78,7 @@ static const NSInteger kDefaultMaxNumberResults = -1;
     [_tableView registerNib:errorCellNib forCellReuseIdentifier:ERROR_CELL_REUSE_ID];
 }
 
-- (void)fetchReposForSearchTerm:(NSString *)searchTerm {
+- (void)fetchNextPageOfReposForSearchTerm:(NSString *)searchTerm {
     if (![searchTerm isEqualToString:self.previousSearchTerm]) {
         self.previousSearchTerm = searchTerm;
         [self reset];
@@ -221,7 +221,13 @@ static const NSInteger kDefaultMaxNumberResults = -1;
 #pragma mark - UITableView delegate
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Should trigger a new fetch if close to the bottom of the table
+    // If there are more results, trigger a fetch for next page of repos if you get too close to the bottom of the table view
+    if (self.areMoreResults) {
+        NSInteger cellsFromBottom = self.repos.count - indexPath.row;
+        if (cellsFromBottom <= kDefaultFetchThreshold) {
+            [self fetchNextPageOfReposForSearchTerm:self.previousSearchTerm];
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

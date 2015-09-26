@@ -24,5 +24,5 @@
 @property (assign, nonatomic) NSInteger maxNumberResults;
 @property (weak, nonatomic) UITableView *tableView;
 + (instancetype)dataSource;
-- (void)fetchReposForSearchTerm:(NSString *)searchTerm;
+- (void)fetchNextPageOfReposForSearchTerm:(NSString *)searchTerm;
 @end

@@ -21,7 +21,7 @@
     // Do any additional setup after loading the view.
     self.dataSource = [BWGithubRepoListDataSource dataSource];
     self.dataSource.tableView = self.tableView;
-    [self.dataSource fetchReposForSearchTerm:@""];
+    [self.dataSource fetchNextPageOfReposForSearchTerm:@""];
 }
 
 @end
