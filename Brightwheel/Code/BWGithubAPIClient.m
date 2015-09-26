@@ -21,7 +21,7 @@
     
     // If the searchTerm is nothing, or is just whitespace, then just search by number of stars
     searchTerm = [searchTerm stringByReplacingOccurrencesOfString:@" " withString:@""]; // Remove whitespace
-    if (searchTerm.length == 0 || searchTerm == nil) searchTerm = @"+stars:0..1000000000";
+    if (searchTerm.length == 0 || searchTerm == nil) searchTerm = @"+stars:0..1000000";
     
     // Construct the url
     NSString *urlString = [NSString stringWithFormat:@"%@search/repositories?q=%@&sort=stars&order=desc&page=%@&per_page=%@&access_token=%@", GITHUB_API_BASE_URL, searchTerm, @(pageNumber), @(pageSize), ACCESS_TOKEN];

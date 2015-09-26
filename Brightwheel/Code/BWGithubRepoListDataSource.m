@@ -174,7 +174,7 @@ static const NSInteger kDefaultMaxNumberResults = -1;
             
             if (completion != nil) completion(nil, sortedRepos);
         } else {
-            NSError *error = [NSError errorWithDomain:@"brightwheel" code:3 userInfo:@{
+            NSError *error = [NSError errorWithDomain:@"Brightwheel" code:3 userInfo:@{
                                                                                        @"message": @"Failed to fetch top contributor for any repo in page"
                                                                                        }];
             if (completion != nil) completion(error, reposToAdd);
