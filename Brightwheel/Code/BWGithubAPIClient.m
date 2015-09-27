@@ -14,17 +14,27 @@
 #define V3_ACCEPT_HEADER_VALUE          @"application/vnd.github.v3+json"
 #define GITHUB_API_BASE_URL             @"https://api.github.com/"
 #define ACCESS_TOKEN                    @"3691e0703dc736b8a2c6edcf8e6ac365a948de7a"
+#define LINK_HEADER                     @"Link"
 
 @implementation BWGithubAPIClient
 
-+ (void)fetchRepositoriesForSearchTerm:(NSString *)searchTerm pageNumber:(NSUInteger)pageNumber pageSize:(NSUInteger)pageSize completion:(void (^)(NSError *error, NSArray *repos))completion {
++ (void)fetchFirstPageOfRepositoriesForSearchTerm:(NSString *)searchTerm pageSize:(NSUInteger)pageSize completion:(void (^)(NSError *error, NSArray *repos, NSString *nextPageLink))completion {
     
     // If the searchTerm is nothing, or is just whitespace, then just search by number of stars
     searchTerm = [searchTerm stringByReplacingOccurrencesOfString:@" " withString:@""]; // Remove whitespace
     if (searchTerm.length == 0 || searchTerm == nil) searchTerm = @"+stars:0..1000000";
     
-    // Construct the url
-    NSString *urlString = [NSString stringWithFormat:@"%@search/repositories?q=%@&sort=stars&order=desc&page=%@&per_page=%@&access_token=%@", GITHUB_API_BASE_URL, searchTerm, @(pageNumber), @(pageSize), ACCESS_TOKEN];
+    // Construct the url string
+    NSString *urlString = [NSString stringWithFormat:@"%@search/repositories?q=%@&sort=stars&order=desc&page=%@&per_page=%@&access_token=%@", GITHUB_API_BASE_URL, searchTerm, @1, @(pageSize), ACCESS_TOKEN];
+    
+    [self fetchWithUrlString:urlString completion:completion];
+}
+
++ (void)fetchNextPageOfRespositoriesWithLink:(NSString *)nextPageLink completion:(void (^)(NSError *error, NSArray *repos, NSString *nextPageLink))completion {
+    [self fetchWithUrlString:nextPageLink completion:completion];
+}
+
++ (void)fetchWithUrlString:(NSString *)urlString completion:(void (^)(NSError *error, NSArray *repos, NSString *nextPageLink))completion {
     NSURL *requestUrl = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestUrl];
     request.HTTPMethod = @"GET";
@@ -34,19 +44,19 @@
     NSURLSessionDataTask *fetchReposTask = [urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         // If there's an error, execute the completion block with a nil result and error
         if (error) {
-            if (completion != nil) completion(error, nil);
+            if (completion != nil) completion(error, nil, nil);
         } else {
             // Otherwise deserialize the response into JSON
             NSError *serializationError;
             NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializationError];
             // If there was an error deserializing the JSON, then execute the completion block with the error and a nil value for the result
             if (serializationError) {
-                if (completion != nil) completion(error, nil);
+                if (completion != nil) completion(error, nil, nil);
             } else {
                 // No error, objectify the repos and hand them back in the completion block
                 NSArray *rawReposArray = rawResults[@"items"];
                 NSArray *repos = [BWGithubRepo reposFromArray:rawReposArray];
-                if (completion != nil) completion(nil, repos);
+                if (completion != nil) completion(nil, repos, [self nextPageLinkFromResponse:response]);
             }
         }
         
@@ -102,6 +112,24 @@
                                                                                    }];
         if (completion != nil) completion(error, nil);
     }
+}
+
++ (NSString *)nextPageLinkFromResponse:(NSURLResponse *)response {
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    NSString *linkHeader = httpResponse.allHeaderFields[LINK_HEADER];
+    NSArray *linkHeaderComponents = [linkHeader componentsSeparatedByString:@", "];
+    NSString *nextPageLink;
+    for (NSString *linkHeaderComponent in linkHeaderComponents) {
+        NSArray *linkComponents = [linkHeaderComponent componentsSeparatedByString:@"; "];
+        NSString *linkRelation = [linkComponents lastObject];
+        if ([linkRelation isEqualToString:@"rel=\"next\""]) {
+            NSString *dirtyLink = [linkComponents firstObject];
+            NSRange cleanLinkRange = NSMakeRange(1, dirtyLink.length - 2);
+            nextPageLink = [dirtyLink substringWithRange:cleanLinkRange];
+            break;
+        }
+    }
+    return nextPageLink;
 }
 
 @end

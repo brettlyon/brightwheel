@@ -18,6 +18,7 @@
 @class BWGithubRepo;
 
 @interface BWGithubAPIClient : NSObject
-+ (void)fetchRepositoriesForSearchTerm:(NSString *)searchTerm pageNumber:(NSUInteger)pageNumber pageSize:(NSUInteger)pageSize completion:(void (^)(NSError *error, NSArray *repos))completion;
++ (void)fetchFirstPageOfRepositoriesForSearchTerm:(NSString *)searchTerm pageSize:(NSUInteger)pageSize completion:(void (^)(NSError *error, NSArray *repos, NSString *nextPageLink))completion;
++ (void)fetchNextPageOfRespositoriesWithLink:(NSString *)nextPageLink completion:(void (^)(NSError *error, NSArray *repos, NSString *nextPageLink))completion;
 + (void)topContributorForRepo:(BWGithubRepo *)repo completion:(void (^)(NSError *error, BWGithubRepoContributor *topContributor))completion;
 @end

@@ -20,7 +20,6 @@
 		D79989681BB546D700FCEB19 /* BWGithubLoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989561BB546D700FCEB19 /* BWGithubLoadingTableViewCell.xib */; };
 		D79989691BB546D700FCEB19 /* BWGithubRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989581BB546D700FCEB19 /* BWGithubRepo.m */; };
 		D799896A1BB546D700FCEB19 /* BWGithubRepoContributor.m in Sources */ = {isa = PBXBuildFile; fileRef = D799895A1BB546D700FCEB19 /* BWGithubRepoContributor.m */; };
-		D799896B1BB546D700FCEB19 /* BWGithubRepoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D799895C1BB546D700FCEB19 /* BWGithubRepoDataSource.m */; };
 		D799896C1BB546D700FCEB19 /* BWGithubRepoListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D799895E1BB546D700FCEB19 /* BWGithubRepoListDataSource.m */; };
 		D799896D1BB546D700FCEB19 /* BWGithubRepoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989601BB546D700FCEB19 /* BWGithubRepoTableViewCell.m */; };
 		D799896E1BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989611BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib */; };
@@ -61,8 +60,6 @@
 		D79989581BB546D700FCEB19 /* BWGithubRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubRepo.m; path = Code/BWGithubRepo.m; sourceTree = "<group>"; };
 		D79989591BB546D700FCEB19 /* BWGithubRepoContributor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubRepoContributor.h; path = Code/BWGithubRepoContributor.h; sourceTree = "<group>"; };
 		D799895A1BB546D700FCEB19 /* BWGithubRepoContributor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubRepoContributor.m; path = Code/BWGithubRepoContributor.m; sourceTree = "<group>"; };
-		D799895B1BB546D700FCEB19 /* BWGithubRepoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubRepoDataSource.h; path = Code/BWGithubRepoDataSource.h; sourceTree = "<group>"; };
-		D799895C1BB546D700FCEB19 /* BWGithubRepoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubRepoDataSource.m; path = Code/BWGithubRepoDataSource.m; sourceTree = "<group>"; };
 		D799895D1BB546D700FCEB19 /* BWGithubRepoListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubRepoListDataSource.h; path = Code/BWGithubRepoListDataSource.h; sourceTree = "<group>"; };
 		D799895E1BB546D700FCEB19 /* BWGithubRepoListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubRepoListDataSource.m; path = Code/BWGithubRepoListDataSource.m; sourceTree = "<group>"; };
 		D799895F1BB546D700FCEB19 /* BWGithubRepoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubRepoTableViewCell.h; path = Code/BWGithubRepoTableViewCell.h; sourceTree = "<group>"; };
@@ -164,8 +161,6 @@
 		D799894C1BB546AB00FCEB19 /* Data sources */ = {
 			isa = PBXGroup;
 			children = (
-				D799895B1BB546D700FCEB19 /* BWGithubRepoDataSource.h */,
-				D799895C1BB546D700FCEB19 /* BWGithubRepoDataSource.m */,
 				D799895D1BB546D700FCEB19 /* BWGithubRepoListDataSource.h */,
 				D799895E1BB546D700FCEB19 /* BWGithubRepoListDataSource.m */,
 			);
@@ -311,7 +306,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D799896B1BB546D700FCEB19 /* BWGithubRepoDataSource.m in Sources */,
 				D799896F1BB546D700FCEB19 /* BWStarredGithubRepoViewController.m in Sources */,
 				D799896D1BB546D700FCEB19 /* BWGithubRepoTableViewCell.m in Sources */,
 				D79989651BB546D700FCEB19 /* BWGithubErrorTableViewCell.m in Sources */,

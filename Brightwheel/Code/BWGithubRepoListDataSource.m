@@ -21,11 +21,11 @@
 @property (assign, nonatomic) BOOL isInErrorState;
 @property (assign, atomic) BOOL fetchPending;
 @property (assign, atomic) BOOL areMoreResults;
-@property (assign, nonatomic) NSUInteger nextPageNumber;
 @property (strong, nonatomic) NSOperationQueue *backgroundQueue;
 @property (strong, nonatomic) NSMutableArray *repos;
 @property (strong, nonatomic) NSString *previousSearchTerm;
 @property (strong, nonatomic) dispatch_queue_t pageSortingQueue;
+@property (strong, nonatomic) NSString *nextPageLink;
 @end
 
 static const NSInteger kDefaultPageSize = 10;
@@ -45,7 +45,6 @@ static const NSInteger kDefaultMaxNumberResults = -1;
         self.isInErrorState = NO;
         self.fetchPending = NO;
         self.areMoreResults = YES;
-        self.nextPageNumber = 1;
         self.pageSize = kDefaultPageSize;
         self.fetchThreshold = kDefaultFetchThreshold;
         self.maxNumberResults = kDefaultMaxNumberResults;
@@ -89,37 +88,41 @@ static const NSInteger kDefaultMaxNumberResults = -1;
         
         __weak typeof(self) weakSelf = self;
         [self.backgroundQueue addOperationWithBlock:^{
-            [BWGithubAPIClient fetchRepositoriesForSearchTerm:searchTerm pageNumber:weakSelf.nextPageNumber pageSize:weakSelf.pageSize completion:^(NSError *error, NSArray *repos) {
+            void (^completionBlock)(NSError *error, NSArray *repos, NSString *nextPageLink) = ^void(NSError *error, NSArray *repos, NSString *nextPageLink) {
                 if (error || repos == nil) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        if (weakSelf.nextPageNumber == 1) {
+                        if (weakSelf.nextPageLink == nil) {
                             weakSelf.isInErrorState = YES;
                             [weakSelf.tableView reloadData];
                         }
+                        weakSelf.fetchPending = NO;
                     });
                 } else {
-                    weakSelf.areMoreResults = repos.count == weakSelf.pageSize;
-                    weakSelf.nextPageNumber++;
+                    weakSelf.areMoreResults = nextPageLink != nil;
+                    weakSelf.nextPageLink = nextPageLink;
                     
                     [weakSelf getTopContributorsForRepos:repos completion:^(NSError *error, NSArray *sortedRepos) {
                         if (!error) {
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [weakSelf.repos addObjectsFromArray:sortedRepos];
                                 [weakSelf.tableView reloadData];
+                                weakSelf.fetchPending = NO;
                             });
                         } else {
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                if (weakSelf.nextPageNumber == 1) {
+                                if (weakSelf.nextPageLink == nil) {
                                     weakSelf.isInErrorState = YES;
                                     [weakSelf.tableView reloadData];
                                 }
+                                weakSelf.fetchPending = NO;
                             });
                         }
                     }];
                 }
-                
-                weakSelf.fetchPending = NO;
-            }];
+            };
+            
+            if (weakSelf.nextPageLink) [BWGithubAPIClient fetchNextPageOfRespositoriesWithLink:weakSelf.nextPageLink completion:completionBlock];
+            else [BWGithubAPIClient fetchFirstPageOfRepositoriesForSearchTerm:weakSelf.previousSearchTerm pageSize:weakSelf.pageSize completion:completionBlock];
         }];
     }
 }
@@ -135,9 +138,9 @@ static const NSInteger kDefaultMaxNumberResults = -1;
     [self.backgroundQueue cancelAllOperations];
     
     self.repos = nil;
-    self.nextPageNumber = 1;
     self.areMoreResults = YES;
     self.isInErrorState = NO;
+    self.nextPageLink = nil;
 }
 
 /*
