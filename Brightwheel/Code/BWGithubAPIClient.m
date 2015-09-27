@@ -23,7 +23,6 @@
     
     // If the searchTerm is nothing, or is just whitespace, then just search by number of stars
     searchTerm = [searchTerm stringByReplacingOccurrencesOfString:@" " withString:@""]; // Remove whitespace
-    //if (searchTerm.length == 0 || searchTerm == nil) searchTerm = @"stars:0..1000000";
     if (searchTerm.length == 0 || searchTerm == nil) searchTerm = @"stars:0..*";
     
     // Construct the url string
@@ -51,16 +50,26 @@
         } else {
             // Otherwise deserialize the response into JSON
             NSError *serializationError;
-            NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializationError];
+            NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&serializationError];
             // If there was an error deserializing the JSON, then execute the completion block with the error and a nil value for the result
             NSLog(@"%@", rawResults);
             if (serializationError) {
                 if (completion != nil) completion(error, nil, nil);
             } else {
-                // No error, objectify the repos and hand them back in the completion block
+                // No serialization error, objectify the repos and hand them back in the completion block
                 NSArray *rawReposArray = rawResults[@"items"];
-                NSArray *repos = [BWGithubRepo reposFromArray:rawReposArray];
-                if (completion != nil) completion(nil, repos, [self nextPageLinkFromResponse:response]);
+                
+                if (rawReposArray) {
+                    NSArray *repos = [BWGithubRepo reposFromArray:rawReposArray];
+                    if (completion != nil) completion(nil, repos, [self nextPageLinkFromResponse:response]);
+                } else {
+                    // Received an error response from the api
+                    NSString *errorMessage = rawResults[@"message"];
+                    NSError *apiError = [NSError errorWithDomain:@"Brightwheel" code:4 userInfo:@{
+                                                                                                  @"message": errorMessage
+                                                                                                  }];
+                    if (completion != nil) completion(apiError, nil, nil);
+                }
             }
         }
         
@@ -146,7 +155,8 @@
     NSString *githubAPIAccessToken = [[NSBundle mainBundle] objectForInfoDictionaryKey:GITHUB_API_ACCESS_TOKEN_PLIST_KEY];
     
     // Add the api access token as an auth header
-    [request addValue:AUTH_HEADER forHTTPHeaderField:githubAPIAccessToken];
+    NSString *authHeader = [NSString stringWithFormat:@"token %@", githubAPIAccessToken];
+    [request addValue:authHeader forHTTPHeaderField:AUTH_HEADER];
 }
 
 @end
