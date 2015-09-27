@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D79989281BB5453200FCEB19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989271BB5453200FCEB19 /* main.m */; };
+		D799892B1BB5453200FCEB19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D799892A1BB5453200FCEB19 /* AppDelegate.m */; };
+		D79989311BB5453200FCEB19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D799892F1BB5453200FCEB19 /* Main.storyboard */; };
+		D79989331BB5453200FCEB19 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D79989321BB5453200FCEB19 /* Images.xcassets */; };
+		D79989361BB5453200FCEB19 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989341BB5453200FCEB19 /* LaunchScreen.xib */; };
+		D79989421BB5453200FCEB19 /* BrightwheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989411BB5453200FCEB19 /* BrightwheelTests.m */; };
+		D79989641BB546D700FCEB19 /* BWGithubAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989501BB546D700FCEB19 /* BWGithubAPIClient.m */; };
+		D79989651BB546D700FCEB19 /* BWGithubErrorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989521BB546D700FCEB19 /* BWGithubErrorTableViewCell.m */; };
+		D79989661BB546D700FCEB19 /* BWGithubErrorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989531BB546D700FCEB19 /* BWGithubErrorTableViewCell.xib */; };
+		D79989671BB546D700FCEB19 /* BWGithubLoadingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989551BB546D700FCEB19 /* BWGithubLoadingTableViewCell.m */; };
+		D79989681BB546D700FCEB19 /* BWGithubLoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989561BB546D700FCEB19 /* BWGithubLoadingTableViewCell.xib */; };
+		D79989691BB546D700FCEB19 /* BWGithubRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989581BB546D700FCEB19 /* BWGithubRepo.m */; };
+		D799896A1BB546D700FCEB19 /* BWGithubRepoContributor.m in Sources */ = {isa = PBXBuildFile; fileRef = D799895A1BB546D700FCEB19 /* BWGithubRepoContributor.m */; };
+		D799896C1BB546D700FCEB19 /* BWGithubRepoListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D799895E1BB546D700FCEB19 /* BWGithubRepoListDataSource.m */; };
+		D799896D1BB546D700FCEB19 /* BWGithubRepoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989601BB546D700FCEB19 /* BWGithubRepoTableViewCell.m */; };
+		D799896E1BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989611BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib */; };
+		D799896F1BB546D700FCEB19 /* BWStarredGithubRepoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989631BB546D700FCEB19 /* BWStarredGithubRepoViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D799893C1BB5453200FCEB19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D799891A1BB5453200FCEB19 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D79989211BB5453200FCEB19;
+			remoteInfo = Brightwheel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D79989221BB5453200FCEB19 /* Brightwheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brightwheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D79989261BB5453200FCEB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D79989271BB5453200FCEB19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D79989291BB5453200FCEB19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D799892A1BB5453200FCEB19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D79989301BB5453200FCEB19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D79989321BB5453200FCEB19 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D79989351BB5453200FCEB19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D799893B1BB5453200FCEB19 /* BrightwheelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrightwheelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D79989401BB5453200FCEB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D79989411BB5453200FCEB19 /* BrightwheelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrightwheelTests.m; sourceTree = "<group>"; };
+		D799894F1BB546D700FCEB19 /* BWGithubAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubAPIClient.h; path = Code/BWGithubAPIClient.h; sourceTree = "<group>"; };
+		D79989501BB546D700FCEB19 /* BWGithubAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubAPIClient.m; path = Code/BWGithubAPIClient.m; sourceTree = "<group>"; };
+		D79989511BB546D700FCEB19 /* BWGithubErrorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubErrorTableViewCell.h; path = Code/BWGithubErrorTableViewCell.h; sourceTree = "<group>"; };
+		D79989521BB546D700FCEB19 /* BWGithubErrorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubErrorTableViewCell.m; path = Code/BWGithubErrorTableViewCell.m; sourceTree = "<group>"; };
+		D79989531BB546D700FCEB19 /* BWGithubErrorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BWGithubErrorTableViewCell.xib; path = Code/BWGithubErrorTableViewCell.xib; sourceTree = "<group>"; };
+		D79989541BB546D700FCEB19 /* BWGithubLoadingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubLoadingTableViewCell.h; path = Code/BWGithubLoadingTableViewCell.h; sourceTree = "<group>"; };
+		D79989551BB546D700FCEB19 /* BWGithubLoadingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubLoadingTableViewCell.m; path = Code/BWGithubLoadingTableViewCell.m; sourceTree = "<group>"; };
+		D79989561BB546D700FCEB19 /* BWGithubLoadingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BWGithubLoadingTableViewCell.xib; path = Code/BWGithubLoadingTableViewCell.xib; sourceTree = "<group>"; };
+		D79989571BB546D700FCEB19 /* BWGithubRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubRepo.h; path = Code/BWGithubRepo.h; sourceTree = "<group>"; };
+		D79989581BB546D700FCEB19 /* BWGithubRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubRepo.m; path = Code/BWGithubRepo.m; sourceTree = "<group>"; };
+		D79989591BB546D700FCEB19 /* BWGithubRepoContributor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubRepoContributor.h; path = Code/BWGithubRepoContributor.h; sourceTree = "<group>"; };
+		D799895A1BB546D700FCEB19 /* BWGithubRepoContributor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubRepoContributor.m; path = Code/BWGithubRepoContributor.m; sourceTree = "<group>"; };
+		D799895D1BB546D700FCEB19 /* BWGithubRepoListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubRepoListDataSource.h; path = Code/BWGithubRepoListDataSource.h; sourceTree = "<group>"; };
+		D799895E1BB546D700FCEB19 /* BWGithubRepoListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubRepoListDataSource.m; path = Code/BWGithubRepoListDataSource.m; sourceTree = "<group>"; };
+		D799895F1BB546D700FCEB19 /* BWGithubRepoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubRepoTableViewCell.h; path = Code/BWGithubRepoTableViewCell.h; sourceTree = "<group>"; };
+		D79989601BB546D700FCEB19 /* BWGithubRepoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubRepoTableViewCell.m; path = Code/BWGithubRepoTableViewCell.m; sourceTree = "<group>"; };
+		D79989611BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BWGithubRepoTableViewCell.xib; path = Code/BWGithubRepoTableViewCell.xib; sourceTree = "<group>"; };
+		D79989621BB546D700FCEB19 /* BWStarredGithubRepoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWStarredGithubRepoViewController.h; path = Code/BWStarredGithubRepoViewController.h; sourceTree = "<group>"; };
+		D79989631BB546D700FCEB19 /* BWStarredGithubRepoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWStarredGithubRepoViewController.m; path = Code/BWStarredGithubRepoViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D799891F1BB5453200FCEB19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D79989381BB5453200FCEB19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D79989191BB5453200FCEB19 = {
+			isa = PBXGroup;
+			children = (
+				D79989241BB5453200FCEB19 /* Brightwheel */,
+				D799893E1BB5453200FCEB19 /* BrightwheelTests */,
+				D79989231BB5453200FCEB19 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D79989231BB5453200FCEB19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D79989221BB5453200FCEB19 /* Brightwheel.app */,
+				D799893B1BB5453200FCEB19 /* BrightwheelTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D79989241BB5453200FCEB19 /* Brightwheel */ = {
+			isa = PBXGroup;
+			children = (
+				D79989701BB546F500FCEB19 /* Cells */,
+				D799894E1BB546BE00FCEB19 /* Models */,
+				D799894D1BB546B600FCEB19 /* API */,
+				D799894C1BB546AB00FCEB19 /* Data sources */,
+				D799894B1BB5469F00FCEB19 /* View controllers */,
+				D79989291BB5453200FCEB19 /* AppDelegate.h */,
+				D799892A1BB5453200FCEB19 /* AppDelegate.m */,
+				D799892F1BB5453200FCEB19 /* Main.storyboard */,
+				D79989321BB5453200FCEB19 /* Images.xcassets */,
+				D79989341BB5453200FCEB19 /* LaunchScreen.xib */,
+				D79989251BB5453200FCEB19 /* Supporting Files */,
+			);
+			path = Brightwheel;
+			sourceTree = "<group>";
+		};
+		D79989251BB5453200FCEB19 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D79989261BB5453200FCEB19 /* Info.plist */,
+				D79989271BB5453200FCEB19 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D799893E1BB5453200FCEB19 /* BrightwheelTests */ = {
+			isa = PBXGroup;
+			children = (
+				D79989411BB5453200FCEB19 /* BrightwheelTests.m */,
+				D799893F1BB5453200FCEB19 /* Supporting Files */,
+			);
+			path = BrightwheelTests;
+			sourceTree = "<group>";
+		};
+		D799893F1BB5453200FCEB19 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D79989401BB5453200FCEB19 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D799894B1BB5469F00FCEB19 /* View controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D79989621BB546D700FCEB19 /* BWStarredGithubRepoViewController.h */,
+				D79989631BB546D700FCEB19 /* BWStarredGithubRepoViewController.m */,
+			);
+			name = "View controllers";
+			sourceTree = "<group>";
+		};
+		D799894C1BB546AB00FCEB19 /* Data sources */ = {
+			isa = PBXGroup;
+			children = (
+				D799895D1BB546D700FCEB19 /* BWGithubRepoListDataSource.h */,
+				D799895E1BB546D700FCEB19 /* BWGithubRepoListDataSource.m */,
+			);
+			name = "Data sources";
+			sourceTree = "<group>";
+		};
+		D799894D1BB546B600FCEB19 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D799894F1BB546D700FCEB19 /* BWGithubAPIClient.h */,
+				D79989501BB546D700FCEB19 /* BWGithubAPIClient.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		D799894E1BB546BE00FCEB19 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D79989571BB546D700FCEB19 /* BWGithubRepo.h */,
+				D79989581BB546D700FCEB19 /* BWGithubRepo.m */,
+				D79989591BB546D700FCEB19 /* BWGithubRepoContributor.h */,
+				D799895A1BB546D700FCEB19 /* BWGithubRepoContributor.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		D79989701BB546F500FCEB19 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D79989511BB546D700FCEB19 /* BWGithubErrorTableViewCell.h */,
+				D79989521BB546D700FCEB19 /* BWGithubErrorTableViewCell.m */,
+				D79989541BB546D700FCEB19 /* BWGithubLoadingTableViewCell.h */,
+				D79989551BB546D700FCEB19 /* BWGithubLoadingTableViewCell.m */,
+				D799895F1BB546D700FCEB19 /* BWGithubRepoTableViewCell.h */,
+				D79989601BB546D700FCEB19 /* BWGithubRepoTableViewCell.m */,
+				D79989531BB546D700FCEB19 /* BWGithubErrorTableViewCell.xib */,
+				D79989561BB546D700FCEB19 /* BWGithubLoadingTableViewCell.xib */,
+				D79989611BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D79989211BB5453200FCEB19 /* Brightwheel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D79989451BB5453200FCEB19 /* Build configuration list for PBXNativeTarget "Brightwheel" */;
+			buildPhases = (
+				D799891E1BB5453200FCEB19 /* Sources */,
+				D799891F1BB5453200FCEB19 /* Frameworks */,
+				D79989201BB5453200FCEB19 /* Resources */,
+				D7B72BE51BB87949005AFD80 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Brightwheel;
+			productName = Brightwheel;
+			productReference = D79989221BB5453200FCEB19 /* Brightwheel.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D799893A1BB5453200FCEB19 /* BrightwheelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D79989481BB5453200FCEB19 /* Build configuration list for PBXNativeTarget "BrightwheelTests" */;
+			buildPhases = (
+				D79989371BB5453200FCEB19 /* Sources */,
+				D79989381BB5453200FCEB19 /* Frameworks */,
+				D79989391BB5453200FCEB19 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D799893D1BB5453200FCEB19 /* PBXTargetDependency */,
+			);
+			name = BrightwheelTests;
+			productName = BrightwheelTests;
+			productReference = D799893B1BB5453200FCEB19 /* BrightwheelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D799891A1BB5453200FCEB19 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = BrettLyon;
+				TargetAttributes = {
+					D79989211BB5453200FCEB19 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					D799893A1BB5453200FCEB19 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = D79989211BB5453200FCEB19;
+					};
+				};
+			};
+			buildConfigurationList = D799891D1BB5453200FCEB19 /* Build configuration list for PBXProject "Brightwheel" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D79989191BB5453200FCEB19;
+			productRefGroup = D79989231BB5453200FCEB19 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D79989211BB5453200FCEB19 /* Brightwheel */,
+				D799893A1BB5453200FCEB19 /* BrightwheelTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D79989201BB5453200FCEB19 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D79989661BB546D700FCEB19 /* BWGithubErrorTableViewCell.xib in Resources */,
+				D799896E1BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib in Resources */,
+				D79989311BB5453200FCEB19 /* Main.storyboard in Resources */,
+				D79989361BB5453200FCEB19 /* LaunchScreen.xib in Resources */,
+				D79989331BB5453200FCEB19 /* Images.xcassets in Resources */,
+				D79989681BB546D700FCEB19 /* BWGithubLoadingTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D79989391BB5453200FCEB19 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D7B72BE51BB87949005AFD80 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "token_file=./github_api_token.txt\ntoken=\"$(cat $token_file)\"\nif [ \"$token\" ]; then\nplutil -replace GithubAPIAccessToken -string $token $TARGET_BUILD_DIR/$INFOPLIST_PATH\nelse\necho 'error: Missing Github API access token'\necho \"error: Please include a file named $token_file that contains a valid Github API access token.\"\nexit 1\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D799891E1BB5453200FCEB19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D799896F1BB546D700FCEB19 /* BWStarredGithubRepoViewController.m in Sources */,
+				D799896D1BB546D700FCEB19 /* BWGithubRepoTableViewCell.m in Sources */,
+				D79989651BB546D700FCEB19 /* BWGithubErrorTableViewCell.m in Sources */,
+				D799892B1BB5453200FCEB19 /* AppDelegate.m in Sources */,
+				D79989671BB546D700FCEB19 /* BWGithubLoadingTableViewCell.m in Sources */,
+				D79989281BB5453200FCEB19 /* main.m in Sources */,
+				D799896A1BB546D700FCEB19 /* BWGithubRepoContributor.m in Sources */,
+				D79989641BB546D700FCEB19 /* BWGithubAPIClient.m in Sources */,
+				D799896C1BB546D700FCEB19 /* BWGithubRepoListDataSource.m in Sources */,
+				D79989691BB546D700FCEB19 /* BWGithubRepo.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D79989371BB5453200FCEB19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D79989421BB5453200FCEB19 /* BrightwheelTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D799893D1BB5453200FCEB19 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D79989211BB5453200FCEB19 /* Brightwheel */;
+			targetProxy = D799893C1BB5453200FCEB19 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D799892F1BB5453200FCEB19 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D79989301BB5453200FCEB19 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D79989341BB5453200FCEB19 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D79989351BB5453200FCEB19 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D79989431BB5453200FCEB19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D79989441BB5453200FCEB19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D79989461BB5453200FCEB19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Brightwheel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D79989471BB5453200FCEB19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Brightwheel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D79989491BB5453200FCEB19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BrightwheelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brightwheel.app/Brightwheel";
+			};
+			name = Debug;
+		};
+		D799894A1BB5453200FCEB19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BrightwheelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brightwheel.app/Brightwheel";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D799891D1BB5453200FCEB19 /* Build configuration list for PBXProject "Brightwheel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D79989431BB5453200FCEB19 /* Debug */,
+				D79989441BB5453200FCEB19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D79989451BB5453200FCEB19 /* Build configuration list for PBXNativeTarget "Brightwheel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D79989461BB5453200FCEB19 /* Debug */,
+				D79989471BB5453200FCEB19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D79989481BB5453200FCEB19 /* Build configuration list for PBXNativeTarget "BrightwheelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D79989491BB5453200FCEB19 /* Debug */,
+				D799894A1BB5453200FCEB19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D799891A1BB5453200FCEB19 /* Project object */;
+}

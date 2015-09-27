@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="loading_cell" rowHeight="113" id="U2V-xl-gUp" customClass="BWGithubLoadingTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="113"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U2V-xl-gUp" id="ZEj-Eo-e2c">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bQs-Xa-rne">
+                        <rect key="frame" x="178" y="38" width="37" height="37"/>
+                        <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                    </activityIndicatorView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerX" secondItem="bQs-Xa-rne" secondAttribute="centerX" id="QpO-R9-pM9"/>
+                    <constraint firstAttribute="centerY" secondItem="bQs-Xa-rne" secondAttribute="centerY" id="V4O-EE-PZv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="spinner" destination="bQs-Xa-rne" id="29A-b1-Efl"/>
+            </connections>
+            <point key="canvasLocation" x="288" y="285.5"/>
+        </tableViewCell>
+    </objects>
+</document>
