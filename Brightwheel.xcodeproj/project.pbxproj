@@ -213,6 +213,7 @@
 				D799891E1BB5453200FCEB19 /* Sources */,
 				D799891F1BB5453200FCEB19 /* Frameworks */,
 				D79989201BB5453200FCEB19 /* Resources */,
+				D7B72BE51BB87949005AFD80 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -300,6 +301,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D7B72BE51BB87949005AFD80 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "token_file=./github_api_token.txt\ntoken=\"$(cat $token_file)\"\nif [ \"$token\" ]; then\nplutil -replace GithubAPIAccessToken -string $token $TARGET_BUILD_DIR/$INFOPLIST_PATH\nelse\necho 'error: Missing Github API access token'\necho \"error: Please include a file named $token_file that contains a valid Github API access token.\"\nexit 1\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D799891E1BB5453200FCEB19 /* Sources */ = {
@@ -510,6 +527,7 @@
 				D79989471BB5453200FCEB19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D79989481BB5453200FCEB19 /* Build configuration list for PBXNativeTarget "BrightwheelTests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +536,7 @@
 				D799894A1BB5453200FCEB19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
