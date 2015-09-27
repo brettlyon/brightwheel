@@ -63,6 +63,8 @@ static const NSInteger kDefaultMaxNumberResults = -1;
     _tableView.dataSource = self;
     _tableView.delegate = self;
     
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     // Register cells xibs with the table view
     NSString *repoCellName = NSStringFromClass([BWGithubRepoTableViewCell class]);
     UINib *repoCellNib = [UINib nibWithNibName:repoCellName bundle:nil];
