@@ -15,6 +15,7 @@
 #define GITHUB_API_BASE_URL                 @"https://api.github.com/"
 #define LINK_HEADER                         @"Link"
 #define GITHUB_API_ACCESS_TOKEN_PLIST_KEY   @"GithubAPIAccessToken"
+#define AUTH_HEADER                         @"Authorization"
 
 @implementation BWGithubAPIClient
 
@@ -22,26 +23,25 @@
     
     // If the searchTerm is nothing, or is just whitespace, then just search by number of stars
     searchTerm = [searchTerm stringByReplacingOccurrencesOfString:@" " withString:@""]; // Remove whitespace
-    if (searchTerm.length == 0 || searchTerm == nil) searchTerm = @"+stars:0..1000000";
-    
-    // Read the api access token from Info.plist
-    NSString *githubAPIAccessToken = [[NSBundle mainBundle] objectForInfoDictionaryKey:GITHUB_API_ACCESS_TOKEN_PLIST_KEY];
+    //if (searchTerm.length == 0 || searchTerm == nil) searchTerm = @"stars:0..1000000";
+    if (searchTerm.length == 0 || searchTerm == nil) searchTerm = @"stars:0..*";
     
     // Construct the url string
-    NSString *urlString = [NSString stringWithFormat:@"%@search/repositories?q=%@&sort=stars&order=desc&page=%@&per_page=%@&access_token=%@", GITHUB_API_BASE_URL, searchTerm, @1, @(pageSize), githubAPIAccessToken];
+    NSString *urlString = [NSString stringWithFormat:@"%@search/repositories?q=%@&sort=stars&order=desc&page=first_page&page_size=%@", GITHUB_API_BASE_URL, searchTerm, @(pageSize)];
     
-    [self fetchWithUrlString:urlString completion:completion];
+    [self fetchReposWithUrlString:urlString completion:completion];
 }
 
 + (void)fetchNextPageOfRespositoriesWithLink:(NSString *)nextPageLink completion:(void (^)(NSError *error, NSArray *repos, NSString *nextPageLink))completion {
-    [self fetchWithUrlString:nextPageLink completion:completion];
+    [self fetchReposWithUrlString:nextPageLink completion:completion];
 }
 
-+ (void)fetchWithUrlString:(NSString *)urlString completion:(void (^)(NSError *error, NSArray *repos, NSString *nextPageLink))completion {
++ (void)fetchReposWithUrlString:(NSString *)urlString completion:(void (^)(NSError *error, NSArray *repos, NSString *nextPageLink))completion {
     NSURL *requestUrl = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestUrl];
     request.HTTPMethod = @"GET";
-    [request addValue:V3_ACCEPT_HEADER_VALUE forHTTPHeaderField:ACCEPT_HEADER];
+    
+    [self addHeadersToRequest:request];
     
     NSURLSession *urlSession = [NSURLSession sharedSession];
     NSURLSessionDataTask *fetchReposTask = [urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -53,6 +53,7 @@
             NSError *serializationError;
             NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializationError];
             // If there was an error deserializing the JSON, then execute the completion block with the error and a nil value for the result
+            NSLog(@"%@", rawResults);
             if (serializationError) {
                 if (completion != nil) completion(error, nil, nil);
             } else {
@@ -77,15 +78,13 @@
             if (completion != nil) completion(error, nil);
         }
         
-        // Read the api access token from Info.plist
-        NSString *githubAPIAccessToken = [[NSBundle mainBundle] objectForInfoDictionaryKey:GITHUB_API_ACCESS_TOKEN_PLIST_KEY];
-        
         // Construct the url
-        NSString *urlString = [NSString stringWithFormat:@"%@repos/%@/contributors?page=1&per_page=1&access_token=%@", GITHUB_API_BASE_URL, repo.fullName, githubAPIAccessToken];
+        NSString *urlString = [NSString stringWithFormat:@"%@repos/%@/contributors?page=1&per_page=1", GITHUB_API_BASE_URL, repo.fullName];
         NSURL *requestUrl = [NSURL URLWithString:urlString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestUrl];
         request.HTTPMethod = @"GET";
-        [request addValue:V3_ACCEPT_HEADER_VALUE forHTTPHeaderField:ACCEPT_HEADER];
+
+        [self addHeadersToRequest:request];
         
         NSURLSession *urlSession = [NSURLSession sharedSession];
 
@@ -137,6 +136,17 @@
         }
     }
     return nextPageLink;
+}
+
++ (void)addHeadersToRequest:(NSMutableURLRequest *)request {
+    // Make sure using v3 of the github api
+    [request addValue:V3_ACCEPT_HEADER_VALUE forHTTPHeaderField:ACCEPT_HEADER];
+    
+    // Read the api access token from Info.plist
+    NSString *githubAPIAccessToken = [[NSBundle mainBundle] objectForInfoDictionaryKey:GITHUB_API_ACCESS_TOKEN_PLIST_KEY];
+    
+    // Add the api access token as an auth header
+    [request addValue:AUTH_HEADER forHTTPHeaderField:githubAPIAccessToken];
 }
 
 @end
