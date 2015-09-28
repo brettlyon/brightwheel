@@ -15,8 +15,11 @@
 #import <Foundation/Foundation.h>
 #import "BWGithubRepoContributor.h"
 
+
+
 @interface BWGithubRepo : NSObject
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *owner;
 @property (strong, nonatomic) NSString *fullName;
 @property (strong, nonatomic) NSString *repoDescription;
 @property (strong, nonatomic) BWGithubRepoContributor *topContributor;

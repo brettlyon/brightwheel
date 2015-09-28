@@ -24,6 +24,10 @@
 		D799896D1BB546D700FCEB19 /* BWGithubRepoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989601BB546D700FCEB19 /* BWGithubRepoTableViewCell.m */; };
 		D799896E1BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989611BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib */; };
 		D799896F1BB546D700FCEB19 /* BWStarredGithubRepoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989631BB546D700FCEB19 /* BWStarredGithubRepoViewController.m */; };
+		D7B72BE71BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */; };
+		D7B72BE91BB8A257005AFD80 /* BWGithubRepoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B72BE81BB8A257005AFD80 /* BWGithubRepoTests.m */; };
+		D7B72BEB1BB8A273005AFD80 /* BWGithubRepoContributorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B72BEA1BB8A273005AFD80 /* BWGithubRepoContributorTests.m */; };
+		D7B72C061BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,11 @@
 		D79989611BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BWGithubRepoTableViewCell.xib; path = Code/BWGithubRepoTableViewCell.xib; sourceTree = "<group>"; };
 		D79989621BB546D700FCEB19 /* BWStarredGithubRepoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWStarredGithubRepoViewController.h; path = Code/BWStarredGithubRepoViewController.h; sourceTree = "<group>"; };
 		D79989631BB546D700FCEB19 /* BWStarredGithubRepoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWStarredGithubRepoViewController.m; path = Code/BWStarredGithubRepoViewController.m; sourceTree = "<group>"; };
+		D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWGithubRepoListDataSourceTests.m; sourceTree = "<group>"; };
+		D7B72BE81BB8A257005AFD80 /* BWGithubRepoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWGithubRepoTests.m; sourceTree = "<group>"; };
+		D7B72BEA1BB8A273005AFD80 /* BWGithubRepoContributorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWGithubRepoContributorTests.m; sourceTree = "<group>"; };
+		D7B72C041BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWGithubAPIResponseMocker.h; sourceTree = "<group>"; };
+		D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWGithubAPIResponseMocker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +145,12 @@
 			isa = PBXGroup;
 			children = (
 				D79989411BB5453200FCEB19 /* BrightwheelTests.m */,
+				D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */,
 				D799893F1BB5453200FCEB19 /* Supporting Files */,
+				D7B72BE81BB8A257005AFD80 /* BWGithubRepoTests.m */,
+				D7B72BEA1BB8A273005AFD80 /* BWGithubRepoContributorTests.m */,
+				D7B72C041BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.h */,
+				D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */,
 			);
 			path = BrightwheelTests;
 			sourceTree = "<group>";
@@ -340,7 +354,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7B72C061BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m in Sources */,
+				D7B72BE71BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m in Sources */,
+				D7B72BEB1BB8A273005AFD80 /* BWGithubRepoContributorTests.m in Sources */,
 				D79989421BB5453200FCEB19 /* BrightwheelTests.m in Sources */,
+				D7B72BE91BB8A257005AFD80 /* BWGithubRepoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

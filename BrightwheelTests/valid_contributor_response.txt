@@ -1,0 +1,20 @@
+{
+    "avatar_url" = "https://avatars.githubusercontent.com/u/67395?v=3";
+    contributions = 196;
+    "events_url" = "https://api.github.com/users/ProLoser/events{/privacy}";
+    "followers_url" = "https://api.github.com/users/ProLoser/followers";
+    "following_url" = "https://api.github.com/users/ProLoser/following{/other_user}";
+    "gists_url" = "https://api.github.com/users/ProLoser/gists{/gist_id}";
+    "gravatar_id" = "";
+    "html_url" = "https://github.com/ProLoser";
+    id = 67395;
+    login = ProLoser;
+    "organizations_url" = "https://api.github.com/users/ProLoser/orgs";
+    "received_events_url" = "https://api.github.com/users/ProLoser/received_events";
+    "repos_url" = "https://api.github.com/users/ProLoser/repos";
+    "site_admin" = 0;
+    "starred_url" = "https://api.github.com/users/ProLoser/starred{/owner}{/repo}";
+    "subscriptions_url" = "https://api.github.com/users/ProLoser/subscriptions";
+    type = User;
+    url = "https://api.github.com/users/ProLoser";
+}

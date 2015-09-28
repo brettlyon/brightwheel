@@ -106,16 +106,27 @@
                 if (serializationError) {
                     if (completion != nil) completion(serializationError, nil);
                 } else {
-                    NSDictionary *rawResult = [rawResults firstObject];
-                    BWGithubRepoContributor *contributor = [BWGithubRepoContributor contributorWithDictionary:rawResult];
-                    if (contributor) {
-                        if (completion != nil) completion(nil, contributor);
+                    // Make sure the result is an array (won't be the case if it's an error
+                    if ([rawResults respondsToSelector:@selector(firstObject)]) {
+                        NSDictionary *rawResult = [rawResults firstObject];
+                        BWGithubRepoContributor *contributor = [BWGithubRepoContributor contributorWithDictionary:rawResult];
+                        if (contributor) {
+                            if (completion != nil) completion(nil, contributor);
+                        } else {
+                            NSError *translationError = [NSError errorWithDomain:@"Brightwheel" code:2 userInfo:@{
+                                                                                                                  @"message": @"Error translating raw contributor response from Github API into a contributor object"
+                                                                                                                  }];
+                            if (completion != nil) completion(translationError, nil);
+                        }
                     } else {
-                        NSError *translationError = [NSError errorWithDomain:@"Brightwheel" code:2 userInfo:@{
-                                                                                                   @"message": @"Error translating raw contributor response from Github API into a contributor object"
-                                                                                                   }];
-                        if (completion != nil) completion(translationError, nil);
+                        NSDictionary *responseDictionary = (NSDictionary *)rawResults;
+                        NSString *errorMessage = responseDictionary[@"message"] ? responseDictionary[@"message"] : @"Top level JSON object was not an array as expected";
+                        NSError *arrayError = [NSError errorWithDomain:@"Brightwheel" code:5 userInfo:@{
+                                                                                                        @"message": errorMessage
+                                                                                                        }];
+                        if (completion != nil) completion(arrayError, nil);
                     }
+                    
                 }
             }
         }];
