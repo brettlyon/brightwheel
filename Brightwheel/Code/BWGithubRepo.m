@@ -33,7 +33,17 @@
     if (![repoDictionary isKindOfClass:[NSDictionary class]] || repoDictionary.count == 0) return nil;
     BWGithubRepo *repo = [[BWGithubRepo alloc] init];
     repo.name = repoDictionary[REPO_NAME_KEY] != [NSNull null] ? repoDictionary[REPO_NAME_KEY] : REPO_NO_NAME_PLACEHOLDER;
+    
     repo.repoDescription = repoDictionary[REPO_DESCRIPTION_KEY] != [NSNull null] ? repoDictionary[REPO_DESCRIPTION_KEY] : NO_DESCRIPTION_MESSAGE;
+    // If the description is an empty string replace it with the placeholder
+    if (repoDictionary[REPO_DESCRIPTION_KEY] != [NSNull null]) {
+        NSString *description = repoDictionary[REPO_DESCRIPTION_KEY];
+        NSString *cleanedString = [description stringByReplacingOccurrencesOfString:@" " withString:@""];
+        repo.repoDescription = cleanedString.length > 0 ? description : NO_DESCRIPTION_MESSAGE;
+    } else {
+        repo.repoDescription = NO_DESCRIPTION_MESSAGE;
+    }
+    
     repo.numStars = repoDictionary[REPO_STARS_LABEL] != [NSNull null] ? [repoDictionary[REPO_STARS_LABEL] integerValue] : 0;
     
     if (repoDictionary[OWNER_KEY] == [NSNull null]) {

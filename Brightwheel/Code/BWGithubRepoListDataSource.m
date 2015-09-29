@@ -252,9 +252,7 @@ static const NSInteger kDefaultMaxNumberResults = -1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.isInErrorState) return 200.0;
-    if (indexPath.row == self.repos.count) return 200.0;
-    return 200.0;
+    return 180.0;
 }
 
 @end
