@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,6 +15,10 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vig-4w-xqF" id="d6c-ne-C7g">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1W-fd-Bet" userLabel="Commit history view" customClass="BWCommitHistoryView">
+                        <rect key="frame" x="0.0" y="0.0" width="463" height="208"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="900" verticalCompressionResistancePriority="900" text="Repo name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="yfm-zu-khX">
                         <rect key="frame" x="16" y="16" width="431" height="35.5"/>
                         <constraints>
@@ -30,7 +35,7 @@
                             <constraint firstAttribute="height" constant="21" id="ftS-47-FLi"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="900" verticalHuggingPriority="900" horizontalCompressionResistancePriority="900" verticalCompressionResistancePriority="900" misplaced="YES" text="Top contributor:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSo-fJ-fht">
@@ -39,7 +44,7 @@
                             <constraint firstAttribute="height" constant="21" id="XrK-Ny-2lL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="My6-DD-9m9" userLabel="Top contributor name">
@@ -48,7 +53,7 @@
                             <constraint firstAttribute="height" constant="21" id="Ild-Vf-urX"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                        <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MSJ-vS-NbH">
@@ -79,11 +84,13 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="w1W-fd-Bet" firstAttribute="leading" secondItem="d6c-ne-C7g" secondAttribute="leading" id="0Af-Pe-khK"/>
                     <constraint firstItem="EGn-sp-NWN" firstAttribute="leading" secondItem="d6c-ne-C7g" secondAttribute="leadingMargin" constant="8" id="54I-Gj-kzv"/>
                     <constraint firstItem="MSJ-vS-NbH" firstAttribute="leading" secondItem="GSo-fJ-fht" secondAttribute="trailing" constant="8" id="5Rc-1o-BLt"/>
                     <constraint firstAttribute="bottomMargin" secondItem="GSo-fJ-fht" secondAttribute="bottom" constant="8" id="5sq-Rj-ceh"/>
                     <constraint firstItem="MSJ-vS-NbH" firstAttribute="centerY" secondItem="GSo-fJ-fht" secondAttribute="centerY" id="6Cx-gz-g7w"/>
-                    <constraint firstItem="5YZ-Pc-SrY" firstAttribute="height" secondItem="zaP-Wt-U4T" secondAttribute="height" id="8yY-Xz-wBx"/>
+                    <constraint firstAttribute="bottom" secondItem="w1W-fd-Bet" secondAttribute="bottom" id="7lC-Rt-Hdv"/>
+                    <constraint firstItem="5YZ-Pc-SrY" firstAttribute="height" secondItem="zaP-Wt-U4T" secondAttribute="height" multiplier="1.2" id="8yY-Xz-wBx"/>
                     <constraint firstAttribute="bottomMargin" secondItem="5YZ-Pc-SrY" secondAttribute="bottom" constant="8" id="9IQ-zr-PDh"/>
                     <constraint firstItem="yfm-zu-khX" firstAttribute="bottom" secondItem="5YZ-Pc-SrY" secondAttribute="bottom" id="ADI-50-ire"/>
                     <constraint firstItem="My6-DD-9m9" firstAttribute="leading" secondItem="GSo-fJ-fht" secondAttribute="trailing" constant="4" id="CPi-ES-PMd"/>
@@ -91,9 +98,11 @@
                     <constraint firstAttribute="trailingMargin" secondItem="yfm-zu-khX" secondAttribute="trailing" constant="8" id="Fww-zc-adN"/>
                     <constraint firstItem="yfm-zu-khX" firstAttribute="top" secondItem="d6c-ne-C7g" secondAttribute="topMargin" constant="8" id="GGp-Ap-EuK"/>
                     <constraint firstItem="5YZ-Pc-SrY" firstAttribute="leading" secondItem="zaP-Wt-U4T" secondAttribute="trailing" constant="4" id="HE9-Mr-22S"/>
+                    <constraint firstAttribute="trailing" secondItem="w1W-fd-Bet" secondAttribute="trailing" id="OvQ-hg-bOk"/>
                     <constraint firstItem="zaP-Wt-U4T" firstAttribute="leading" secondItem="d6c-ne-C7g" secondAttribute="leadingMargin" constant="8" id="Owr-8a-YiS"/>
                     <constraint firstAttribute="trailingMargin" secondItem="5YZ-Pc-SrY" secondAttribute="trailing" constant="8" id="QWB-b6-bGh"/>
                     <constraint firstItem="My6-DD-9m9" firstAttribute="bottom" secondItem="GSo-fJ-fht" secondAttribute="bottom" id="SwX-AV-gyQ"/>
+                    <constraint firstItem="w1W-fd-Bet" firstAttribute="top" secondItem="d6c-ne-C7g" secondAttribute="top" id="Urh-eu-BMg"/>
                     <constraint firstItem="5YZ-Pc-SrY" firstAttribute="centerY" secondItem="zaP-Wt-U4T" secondAttribute="centerY" id="V3c-dP-fkB"/>
                     <constraint firstItem="5YZ-Pc-SrY" firstAttribute="leading" secondItem="yfm-zu-khX" secondAttribute="trailing" constant="8" id="Yjj-VZ-SQR"/>
                     <constraint firstItem="GSo-fJ-fht" firstAttribute="leading" secondItem="5YZ-Pc-SrY" secondAttribute="trailing" constant="16" id="Yx3-Pe-t0t"/>
@@ -121,6 +130,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="commitHistoryView" destination="w1W-fd-Bet" id="cGq-MY-eJx"/>
                 <outlet property="contributorSpinner" destination="MSJ-vS-NbH" id="MR1-lU-RRd"/>
                 <outlet property="descriptionLabel" destination="EGn-sp-NWN" id="Sq5-dM-Tup"/>
                 <outlet property="repoNameLabel" destination="yfm-zu-khX" id="bsi-fe-Xo5"/>

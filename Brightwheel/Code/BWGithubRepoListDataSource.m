@@ -219,14 +219,21 @@ static const NSInteger kDefaultFetchThreshold = 5;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.isInErrorState) {
         // Return an error cell
-        return [tableView dequeueReusableCellWithIdentifier:ERROR_CELL_REUSE_ID forIndexPath:indexPath];
+        BWGithubErrorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ERROR_CELL_REUSE_ID forIndexPath:indexPath];
+        
+        [self removeSeparatorInsetForCell:cell];
+        
+        return cell;
     }
     
     if (indexPath.row == self.repos.count) {
         // Return loading cell
-        BWGithubLoadingTableViewCell *loadingCell = [tableView dequeueReusableCellWithIdentifier:LOADING_CELL_REUSE_ID forIndexPath:indexPath];
-        [loadingCell.spinner startAnimating];
-        return loadingCell;
+        BWGithubLoadingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LOADING_CELL_REUSE_ID forIndexPath:indexPath];
+        [cell.spinner startAnimating];
+        
+        [self removeSeparatorInsetForCell:cell];
+        
+        return cell;
     }
     
     // Populate and return a repo cell
@@ -249,8 +256,43 @@ static const NSInteger kDefaultFetchThreshold = 5;
         [cell.contributorSpinner startAnimating];
         cell.contributorSpinner.hidden = NO;
     }
+    
+    if (repo.commitHistory) {
+        cell.commitHistoryView.hidden = NO;
+        cell.commitHistoryView.commitHistory = repo.commitHistory;
+        
+        if (!repo.hasCommitHistoryAppeared) {
+            cell.commitHistoryView.alpha = 0.0;
+            [UIView animateWithDuration:1.0 animations:^{
+                cell.commitHistoryView.alpha = 1.0;
+            }];
+        }
+        
+        repo.hasCommitHistoryAppeared = YES;
+    } else {
+        cell.commitHistoryView.hidden = YES;
+    }
+    
+    [self removeSeparatorInsetForCell:cell];
 
     return cell;
+}
+
+- (void)removeSeparatorInsetForCell:(UITableViewCell *)cell {
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 #pragma mark - UITableView delegate

@@ -10,6 +10,7 @@
 		D76303721BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m in Sources */ = {isa = PBXBuildFile; fileRef = D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */; };
 		D76303761BBB227A00BCDE51 /* star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D76303751BBB227A00BCDE51 /* star_icon.png */; };
 		D76303791BBB39CD00BCDE51 /* BWGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = D76303781BBB39CD00BCDE51 /* BWGradientView.m */; };
+		D763037D1BBB445300BCDE51 /* BWCommitHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = D763037C1BBB445300BCDE51 /* BWCommitHistoryView.m */; };
 		D79989281BB5453200FCEB19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989271BB5453200FCEB19 /* main.m */; };
 		D799892B1BB5453200FCEB19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D799892A1BB5453200FCEB19 /* AppDelegate.m */; };
 		D79989311BB5453200FCEB19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D799892F1BB5453200FCEB19 /* Main.storyboard */; };
@@ -48,6 +49,8 @@
 		D76303751BBB227A00BCDE51 /* star_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_icon.png; path = Resources/Images/star_icon.png; sourceTree = "<group>"; };
 		D76303771BBB39CD00BCDE51 /* BWGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGradientView.h; path = Code/BWGradientView.h; sourceTree = "<group>"; };
 		D76303781BBB39CD00BCDE51 /* BWGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGradientView.m; path = Code/BWGradientView.m; sourceTree = "<group>"; };
+		D763037B1BBB445300BCDE51 /* BWCommitHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWCommitHistoryView.h; path = Code/BWCommitHistoryView.h; sourceTree = "<group>"; };
+		D763037C1BBB445300BCDE51 /* BWCommitHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWCommitHistoryView.m; path = Code/BWCommitHistoryView.m; sourceTree = "<group>"; };
 		D79989221BB5453200FCEB19 /* Brightwheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brightwheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79989261BB5453200FCEB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D79989271BB5453200FCEB19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -118,6 +121,17 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		D763037A1BBB443800BCDE51 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D76303771BBB39CD00BCDE51 /* BWGradientView.h */,
+				D76303781BBB39CD00BCDE51 /* BWGradientView.m */,
+				D763037B1BBB445300BCDE51 /* BWCommitHistoryView.h */,
+				D763037C1BBB445300BCDE51 /* BWCommitHistoryView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		D79989191BB5453200FCEB19 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +153,7 @@
 		D79989241BB5453200FCEB19 /* Brightwheel */ = {
 			isa = PBXGroup;
 			children = (
+				D763037A1BBB443800BCDE51 /* Views */,
 				D76303731BBB226700BCDE51 /* Resources */,
 				D79989701BB546F500FCEB19 /* Cells */,
 				D799894E1BB546BE00FCEB19 /* Models */,
@@ -192,8 +207,6 @@
 			children = (
 				D79989621BB546D700FCEB19 /* BWStarredGithubRepoViewController.h */,
 				D79989631BB546D700FCEB19 /* BWStarredGithubRepoViewController.m */,
-				D76303771BBB39CD00BCDE51 /* BWGradientView.h */,
-				D76303781BBB39CD00BCDE51 /* BWGradientView.m */,
 			);
 			name = "View controllers";
 			sourceTree = "<group>";
@@ -367,6 +380,7 @@
 				D76303791BBB39CD00BCDE51 /* BWGradientView.m in Sources */,
 				D799896F1BB546D700FCEB19 /* BWStarredGithubRepoViewController.m in Sources */,
 				D799896D1BB546D700FCEB19 /* BWGithubRepoTableViewCell.m in Sources */,
+				D763037D1BBB445300BCDE51 /* BWCommitHistoryView.m in Sources */,
 				D79989651BB546D700FCEB19 /* BWGithubErrorTableViewCell.m in Sources */,
 				D799892B1BB5453200FCEB19 /* AppDelegate.m in Sources */,
 				D79989671BB546D700FCEB19 /* BWGithubLoadingTableViewCell.m in Sources */,

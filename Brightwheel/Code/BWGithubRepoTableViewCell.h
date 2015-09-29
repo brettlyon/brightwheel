@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BWCommitHistoryView.h"
 
 @interface BWGithubRepoTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *repoNameLabel;
@@ -14,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *starsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *topContributorLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *contributorSpinner;
+@property (weak, nonatomic) IBOutlet BWCommitHistoryView *commitHistoryView;
 @end
