@@ -108,21 +108,21 @@
 + (NSDictionary *)repoDictionaryMissingFullName {
     NSDictionary *repo = [self validRepoDictionary];
     NSMutableDictionary *mutableRepo = [repo mutableCopy];
-    [mutableRepo removeObjectForKey:@"full_name"];
+    [mutableRepo setObject:[NSNull null] forKey:@"full_name"];
     return mutableRepo;
 }
 
 + (NSDictionary *)repoDictionaryMissingDescription {
     NSDictionary *repo = [self validRepoDictionary];
     NSMutableDictionary *mutableRepo = [repo mutableCopy];
-    [mutableRepo removeObjectForKey:@"description"];
+    [mutableRepo setObject:[NSNull null] forKey:@"description"];
     return mutableRepo;
 }
 
 + (NSDictionary *)repoDictionaryMissingOwnerLogin {
     NSDictionary *repo = [self validRepoDictionary];
     NSMutableDictionary *mutableRepo = [repo mutableCopy];
-    [mutableRepo removeObjectForKey:@"owner"];
+    [mutableRepo setObject:[NSNull null] forKey:@"owner"];
     return mutableRepo;
 }
 
@@ -167,18 +167,15 @@
 + (NSDictionary *)contributorDictionaryMissingLogin {
     NSDictionary *contributor = [self validContributorDictionary];
     NSMutableDictionary *mutableContributor = [contributor mutableCopy];
-    [mutableContributor removeObjectForKey:@"login"];
+    [mutableContributor setObject:[NSNull null] forKey:@"login"];
     return mutableContributor;
 }
 
 + (NSDictionary *)contributorDictionaryMissingContributions {
     NSDictionary *contributor = [self validContributorDictionary];
     NSMutableDictionary *mutableContributor = [contributor mutableCopy];
-    [mutableContributor removeObjectForKey:@"contributions"];
+    [mutableContributor setObject:[NSNull null] forKey:@"contributions"];
     return mutableContributor;
 }
-
-
-
 
 @end

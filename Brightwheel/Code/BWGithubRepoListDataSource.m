@@ -90,6 +90,7 @@ static const NSInteger kDefaultMaxNumberResults = -1;
         
         __weak typeof(self) weakSelf = self;
         [self.backgroundQueue addOperationWithBlock:^{
+            NSLog(@"On main thread: %@", [NSThread isMainThread] ? @"yes" : @"no");
             void (^completionBlock)(NSError *error, NSArray *repos, NSString *nextPageLink) = ^void(NSError *error, NSArray *repos, NSString *nextPageLink) {
                 if (error || repos == nil) {
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -251,9 +252,7 @@ static const NSInteger kDefaultMaxNumberResults = -1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.isInErrorState) return 200.0;
-    if (indexPath.row == self.repos.count) return 200.0;
-    return 200.0;
+    return 180.0;
 }
 
 @end

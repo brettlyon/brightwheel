@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D76303721BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m in Sources */ = {isa = PBXBuildFile; fileRef = D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */; };
+		D76303761BBB227A00BCDE51 /* star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D76303751BBB227A00BCDE51 /* star_icon.png */; };
 		D79989281BB5453200FCEB19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989271BB5453200FCEB19 /* main.m */; };
 		D799892B1BB5453200FCEB19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D799892A1BB5453200FCEB19 /* AppDelegate.m */; };
 		D79989311BB5453200FCEB19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D799892F1BB5453200FCEB19 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		D76303701BBA512E00BCDE51 /* BWGithubAPIClient+Mock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BWGithubAPIClient+Mock.h"; sourceTree = "<group>"; };
 		D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BWGithubAPIClient+Mock.m"; sourceTree = "<group>"; };
+		D76303751BBB227A00BCDE51 /* star_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_icon.png; path = Resources/Images/star_icon.png; sourceTree = "<group>"; };
 		D79989221BB5453200FCEB19 /* Brightwheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brightwheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79989261BB5453200FCEB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D79989271BB5453200FCEB19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +99,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D76303731BBB226700BCDE51 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D76303741BBB226F00BCDE51 /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D76303741BBB226F00BCDE51 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D76303751BBB227A00BCDE51 /* star_icon.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		D79989191BB5453200FCEB19 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +136,7 @@
 		D79989241BB5453200FCEB19 /* Brightwheel */ = {
 			isa = PBXGroup;
 			children = (
+				D76303731BBB226700BCDE51 /* Resources */,
 				D79989701BB546F500FCEB19 /* Cells */,
 				D799894E1BB546BE00FCEB19 /* Models */,
 				D799894D1BB546B600FCEB19 /* API */,
@@ -145,14 +164,10 @@
 		D799893E1BB5453200FCEB19 /* BrightwheelTests */ = {
 			isa = PBXGroup;
 			children = (
-				D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */,
 				D799893F1BB5453200FCEB19 /* Supporting Files */,
 				D7B72BE81BB8A257005AFD80 /* BWGithubRepoTests.m */,
+				D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */,
 				D7B72BEA1BB8A273005AFD80 /* BWGithubRepoContributorTests.m */,
-				D7B72C041BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.h */,
-				D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */,
-				D76303701BBA512E00BCDE51 /* BWGithubAPIClient+Mock.h */,
-				D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */,
 			);
 			path = BrightwheelTests;
 			sourceTree = "<group>";
@@ -160,6 +175,10 @@
 		D799893F1BB5453200FCEB19 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D7B72C041BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.h */,
+				D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */,
+				D76303701BBA512E00BCDE51 /* BWGithubAPIClient+Mock.h */,
+				D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */,
 				D79989401BB5453200FCEB19 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -302,6 +321,7 @@
 			files = (
 				D79989661BB546D700FCEB19 /* BWGithubErrorTableViewCell.xib in Resources */,
 				D799896E1BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib in Resources */,
+				D76303761BBB227A00BCDE51 /* star_icon.png in Resources */,
 				D79989311BB5453200FCEB19 /* Main.storyboard in Resources */,
 				D79989361BB5453200FCEB19 /* LaunchScreen.xib in Resources */,
 				D79989331BB5453200FCEB19 /* Images.xcassets in Resources */,

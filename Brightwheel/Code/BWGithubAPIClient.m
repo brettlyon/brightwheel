@@ -23,10 +23,10 @@
     
     // If the searchTerm is nothing, or is just whitespace, then just search by number of stars
     searchTerm = [searchTerm stringByReplacingOccurrencesOfString:@" " withString:@""]; // Remove whitespace
-    if (searchTerm.length == 0 || searchTerm == nil) searchTerm = @"stars:0..*";
+    if (searchTerm == nil || searchTerm.length == 0) searchTerm = @"stars:0..*";
     
     // Construct the url string
-    NSString *urlString = [NSString stringWithFormat:@"%@search/repositories?q=%@&sort=stars&order=desc&page=first_page&page_size=%@", GITHUB_API_BASE_URL, searchTerm, @(pageSize)];
+    NSString *urlString = [NSString stringWithFormat:@"%@search/repositories?q=%@&sort=stars&order=desc&page=1&page_size=%@", GITHUB_API_BASE_URL, searchTerm, @(pageSize)];
     
     [self fetchReposWithUrlString:urlString completion:completion];
 }
@@ -149,8 +149,12 @@
         NSString *linkRelation = [linkComponents lastObject];
         if ([linkRelation isEqualToString:@"rel=\"next\""]) {
             NSString *dirtyLink = [linkComponents firstObject];
-            NSRange cleanLinkRange = NSMakeRange(1, dirtyLink.length - 2);
-            nextPageLink = [dirtyLink substringWithRange:cleanLinkRange];
+            if (dirtyLink) {
+                NSRange cleanLinkRange = NSMakeRange(1, dirtyLink.length - 2);
+                nextPageLink = [dirtyLink substringWithRange:cleanLinkRange];
+            } else {
+                nextPageLink = nil;
+            }
             break;
         }
     }
