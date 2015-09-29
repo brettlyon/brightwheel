@@ -115,6 +115,7 @@ static const NSInteger kDefaultFetchThreshold = 5;
                     
                     for (NSUInteger i = preAddRepoCount; i < postAddRepoCount; i++) {
                         [self getTopContributorForRepoAtIndex:i];
+                        [self getCommitHistoryForRepoAtIndex:i];
                     }
                 }
             };
@@ -163,29 +164,44 @@ static const NSInteger kDefaultFetchThreshold = 5;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     repo.topContributor = topContributor;
                     
-                    // Reload the cell corresponding to that repo
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:repoIndex inSection:0];
-                    [self.tableView beginUpdates];
-                    [CATransaction setDisableActions:YES]; // Little trick to make sure the reload of the cell is not animated
-                    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                    [CATransaction setDisableActions:NO];
-                    [self.tableView endUpdates];
+                    [self reloadCellForIndex:repoIndex];
                 });
             }
         }];
     }
 }
 
-- (NSArray *)sortReposByStarsDescendingOrder:(NSArray *)repos {
-    // Sort the repos by stars before passing to the completion block
-    return [repos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        BWGithubRepo *repo1 = (BWGithubRepo *)obj1;
-        BWGithubRepo *repo2 = (BWGithubRepo *)obj2;
-        
-        if (repo1.numStars < repo2.numStars) return NSOrderedDescending;
-        if (repo1.numStars > repo2.numStars) return NSOrderedAscending;
-        return NSOrderedSame;
-    }];
+- (void)getCommitHistoryForRepoAtIndex:(NSUInteger)repoIndex {
+    __block BWGithubRepo *repo;
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if (self.repos.count > repoIndex) {
+            repo = self.repos[repoIndex];
+        }
+    });
+    
+    if (repo) {
+        [BWGithubAPIClient commitHistoryForRepo:repo completion:^(NSError *error, NSArray *commitsByWeek) {
+            if (!error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    repo.commitHistory = commitsByWeek;
+                    
+                    [self reloadCellForIndex:repoIndex];
+                });
+            }
+        }];
+    }
+}
+
+- (void)reloadCellForIndex:(NSUInteger)index {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // Reload the cell corresponding to that repo
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.tableView beginUpdates];
+        [CATransaction setDisableActions:YES]; // Little trick to make sure the reload of the cell is not animated
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [CATransaction setDisableActions:NO];
+        [self.tableView endUpdates];
+    });
 }
 
 #pragma mark - UITableView data source
@@ -203,14 +219,21 @@ static const NSInteger kDefaultFetchThreshold = 5;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.isInErrorState) {
         // Return an error cell
-        return [tableView dequeueReusableCellWithIdentifier:ERROR_CELL_REUSE_ID forIndexPath:indexPath];
+        BWGithubErrorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ERROR_CELL_REUSE_ID forIndexPath:indexPath];
+        
+        [self removeSeparatorInsetForCell:cell];
+        
+        return cell;
     }
     
     if (indexPath.row == self.repos.count) {
         // Return loading cell
-        BWGithubLoadingTableViewCell *loadingCell = [tableView dequeueReusableCellWithIdentifier:LOADING_CELL_REUSE_ID forIndexPath:indexPath];
-        [loadingCell.spinner startAnimating];
-        return loadingCell;
+        BWGithubLoadingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LOADING_CELL_REUSE_ID forIndexPath:indexPath];
+        [cell.spinner startAnimating];
+        
+        [self removeSeparatorInsetForCell:cell];
+        
+        return cell;
     }
     
     // Populate and return a repo cell
@@ -233,8 +256,43 @@ static const NSInteger kDefaultFetchThreshold = 5;
         [cell.contributorSpinner startAnimating];
         cell.contributorSpinner.hidden = NO;
     }
+    
+    if (repo.commitHistory) {
+        cell.commitHistoryView.hidden = NO;
+        cell.commitHistoryView.commitHistory = repo.commitHistory;
+        
+        if (!repo.hasCommitHistoryAppeared) {
+            cell.commitHistoryView.alpha = 0.0;
+            [UIView animateWithDuration:1.0 animations:^{
+                cell.commitHistoryView.alpha = 1.0;
+            }];
+        }
+        
+        repo.hasCommitHistoryAppeared = YES;
+    } else {
+        cell.commitHistoryView.hidden = YES;
+    }
+    
+    [self removeSeparatorInsetForCell:cell];
 
     return cell;
+}
+
+- (void)removeSeparatorInsetForCell:(UITableViewCell *)cell {
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 #pragma mark - UITableView delegate
