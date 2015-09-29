@@ -41,8 +41,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top contributor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSo-fJ-fht">
-                        <rect key="frame" x="16" y="101" width="431" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="900" verticalHuggingPriority="900" horizontalCompressionResistancePriority="900" verticalCompressionResistancePriority="900" misplaced="YES" text="Top contributor:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSo-fJ-fht">
+                        <rect key="frame" x="16" y="101" width="135" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="XrK-Ny-2lL"/>
                         </constraints>
@@ -50,27 +50,50 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My6-DD-9m9" userLabel="Top contributor name">
+                        <rect key="frame" x="159" y="101" width="288" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Ild-Vf-urX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MSJ-vS-NbH">
+                        <rect key="frame" x="159" y="101" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="EGn-sp-NWN" firstAttribute="leading" secondItem="d6c-ne-C7g" secondAttribute="leadingMargin" constant="8" id="54I-Gj-kzv"/>
+                    <constraint firstItem="MSJ-vS-NbH" firstAttribute="leading" secondItem="GSo-fJ-fht" secondAttribute="trailing" constant="8" id="5Rc-1o-BLt"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="GSo-fJ-fht" secondAttribute="bottom" constant="8" id="5sq-Rj-ceh"/>
+                    <constraint firstItem="MSJ-vS-NbH" firstAttribute="centerY" secondItem="GSo-fJ-fht" secondAttribute="centerY" id="6Cx-gz-g7w"/>
                     <constraint firstItem="yfm-zu-khX" firstAttribute="bottom" secondItem="5YZ-Pc-SrY" secondAttribute="bottom" id="ADI-50-ire"/>
+                    <constraint firstItem="My6-DD-9m9" firstAttribute="leading" secondItem="GSo-fJ-fht" secondAttribute="trailing" constant="8" id="CPi-ES-PMd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="EGn-sp-NWN" secondAttribute="trailing" constant="8" id="Cvh-Sa-fke"/>
                     <constraint firstItem="yfm-zu-khX" firstAttribute="top" secondItem="d6c-ne-C7g" secondAttribute="topMargin" constant="8" id="GGp-Ap-EuK"/>
                     <constraint firstAttribute="trailingMargin" secondItem="5YZ-Pc-SrY" secondAttribute="trailing" constant="8" id="QWB-b6-bGh"/>
+                    <constraint firstItem="My6-DD-9m9" firstAttribute="bottom" secondItem="GSo-fJ-fht" secondAttribute="bottom" id="SwX-AV-gyQ"/>
                     <constraint firstItem="5YZ-Pc-SrY" firstAttribute="leading" secondItem="yfm-zu-khX" secondAttribute="trailing" constant="8" id="Yjj-VZ-SQR"/>
                     <constraint firstItem="GSo-fJ-fht" firstAttribute="top" secondItem="EGn-sp-NWN" secondAttribute="bottom" constant="16" id="rwL-Z4-bRO"/>
                     <constraint firstAttribute="trailingMargin" secondItem="GSo-fJ-fht" secondAttribute="trailing" constant="8" id="syK-dG-FrG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="My6-DD-9m9" secondAttribute="trailing" constant="8" id="twK-77-nTf"/>
                     <constraint firstItem="yfm-zu-khX" firstAttribute="leading" secondItem="d6c-ne-C7g" secondAttribute="leadingMargin" constant="8" id="upS-Gj-Ynb"/>
                     <constraint firstItem="EGn-sp-NWN" firstAttribute="top" secondItem="yfm-zu-khX" secondAttribute="bottom" constant="16" id="yJH-aD-6D8"/>
                     <constraint firstItem="GSo-fJ-fht" firstAttribute="leading" secondItem="d6c-ne-C7g" secondAttribute="leadingMargin" constant="8" id="zo7-AU-vE4"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="syK-dG-FrG"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="contributorSpinner" destination="MSJ-vS-NbH" id="MR1-lU-RRd"/>
                 <outlet property="descriptionLabel" destination="EGn-sp-NWN" id="Sq5-dM-Tup"/>
                 <outlet property="repoNameLabel" destination="yfm-zu-khX" id="bsi-fe-Xo5"/>
                 <outlet property="starsLabel" destination="5YZ-Pc-SrY" id="hcn-dK-yhb"/>
-                <outlet property="topContributorLabel" destination="GSo-fJ-fht" id="eNj-g1-Yra"/>
+                <outlet property="topContributorLabel" destination="My6-DD-9m9" id="q4t-V4-NWF"/>
             </connections>
             <point key="canvasLocation" x="281.5" y="215"/>
         </tableViewCell>

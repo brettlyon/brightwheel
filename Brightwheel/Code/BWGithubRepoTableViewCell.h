@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *starsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *topContributorLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *contributorSpinner;
 @end

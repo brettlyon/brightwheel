@@ -93,7 +93,7 @@ static const NSInteger kDefaultMaxNumberResults = -1;
             void (^completionBlock)(NSError *error, NSArray *repos, NSString *nextPageLink) = ^void(NSError *error, NSArray *repos, NSString *nextPageLink) {
                 if (error || repos == nil) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        if (weakSelf.nextPageLink == nil) {
+                        if (self.repos.count == 0) {
                             weakSelf.isInErrorState = YES;
                             [weakSelf.tableView reloadData];
                         }
@@ -103,23 +103,20 @@ static const NSInteger kDefaultMaxNumberResults = -1;
                     weakSelf.areMoreResults = nextPageLink != nil;
                     weakSelf.nextPageLink = nextPageLink;
                     
-                    [weakSelf getTopContributorsForRepos:repos completion:^(NSError *error, NSArray *sortedRepos) {
-                        if (!error) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [weakSelf.repos addObjectsFromArray:sortedRepos];
-                                [weakSelf.tableView reloadData];
-                                weakSelf.fetchPending = NO;
-                            });
-                        } else {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                if (weakSelf.nextPageLink == nil) {
-                                    weakSelf.isInErrorState = YES;
-                                    [weakSelf.tableView reloadData];
-                                }
-                                weakSelf.fetchPending = NO;
-                            });
-                        }
-                    }];
+                    __block NSUInteger preAddRepoCount;
+                    __block NSUInteger postAddRepoCount;
+                    
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        preAddRepoCount = self.repos.count;
+                        [self.repos addObjectsFromArray:repos];
+                        [self.tableView reloadData];
+                        self.fetchPending = NO;
+                        postAddRepoCount = self.repos.count;
+                    });
+                    
+                    for (NSUInteger i = preAddRepoCount; i < postAddRepoCount; i++) {
+                        [self getTopContributorForRepoAtIndex:i];
+                    }
                 }
             };
             
@@ -149,42 +146,47 @@ static const NSInteger kDefaultMaxNumberResults = -1;
  
  This method takes an array of repository objects, and fetches each of their top contributors. Once all top contributors have been fetched and added to the repository objects, the repos are sorted in descending order by number of stars, and the array is passed to the completion block.
  
+ Note: This method involves a synchronous dispatch to the main queue to preserve thread safety of the repos dictionary, and thus CANNOT be executed on the main thread
+ 
  */
-- (void)getTopContributorsForRepos:(NSArray *)repos completion:(void (^)(NSError *error, NSArray *sortedRepos))completion {
-    // Use a dispatch group in order to wait until all of the contributor fetches have been completed.
-    NSMutableArray *reposToAdd = [NSMutableArray array];
-    dispatch_group_t contributorFetchGroup = dispatch_group_create();
-    for (BWGithubRepo *repo in repos) {
-        dispatch_group_enter(contributorFetchGroup);
-        [BWGithubAPIClient topContributorForRepo:repo completion:^(NSError *error, BWGithubRepoContributor *topContributor) {
-            if (!error) {
-                repo.topContributor = topContributor;
-                [reposToAdd addObject:repo];
-            }
-            dispatch_group_leave(contributorFetchGroup);
-        }];
-    }
-    
-    dispatch_group_notify(contributorFetchGroup, self.pageSortingQueue, ^{
-        if (reposToAdd.count > 0) {
-            // Sort the repos by stars before passing to the completion block
-            NSArray *sortedRepos = [reposToAdd sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                BWGithubRepo *repo1 = (BWGithubRepo *)obj1;
-                BWGithubRepo *repo2 = (BWGithubRepo *)obj2;
-                
-                if (repo1.numStars < repo2.numStars) return NSOrderedDescending;
-                if (repo1.numStars > repo2.numStars) return NSOrderedAscending;
-                return NSOrderedSame;
-            }];
-            
-            if (completion != nil) completion(nil, sortedRepos);
-        } else {
-            NSError *error = [NSError errorWithDomain:@"Brightwheel" code:3 userInfo:@{
-                                                                                       @"message": @"Failed to fetch top contributor for any repo in page"
-                                                                                       }];
-            if (completion != nil) completion(error, reposToAdd);
+- (void)getTopContributorForRepoAtIndex:(NSInteger)repoIndex {
+    __block BWGithubRepo *repo;
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if (self.repos.count > repoIndex) {
+            repo = self.repos[repoIndex];
         }
     });
+    
+    // If there is no repo at repo index don't do anything
+    if (repo) {
+        [BWGithubAPIClient topContributorForRepo:repo completion:^(NSError *error, BWGithubRepoContributor *topContributor) {
+            if (!error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    repo.topContributor = topContributor;
+                    
+                    // Reload the cell corresponding to that repo
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:repoIndex inSection:0];
+                    [self.tableView beginUpdates];
+                    [CATransaction setDisableActions:YES]; // Little trick to make sure the reload of the cell is not animated
+                    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                    [CATransaction setDisableActions:NO];
+                    [self.tableView endUpdates];
+                });
+            }
+        }];
+    }
+}
+
+- (NSArray *)sortReposByStarsDescendingOrder:(NSArray *)repos {
+    // Sort the repos by stars before passing to the completion block
+    return [repos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        BWGithubRepo *repo1 = (BWGithubRepo *)obj1;
+        BWGithubRepo *repo2 = (BWGithubRepo *)obj2;
+        
+        if (repo1.numStars < repo2.numStars) return NSOrderedDescending;
+        if (repo1.numStars > repo2.numStars) return NSOrderedAscending;
+        return NSOrderedSame;
+    }];
 }
 
 #pragma mark - UITableView data source
@@ -218,8 +220,21 @@ static const NSInteger kDefaultMaxNumberResults = -1;
     cell.repoNameLabel.text = repo.fullName;
     cell.descriptionLabel.text = repo.repoDescription;
     cell.starsLabel.text = [NSString stringWithFormat:@"%@", @(repo.numStars)];
+    
+    // Top contributor
     BWGithubRepoContributor *topContributor = repo.topContributor;
-    cell.topContributorLabel.text = [NSString stringWithFormat:@"top contributor: %@ (%@)", topContributor.name, @(topContributor.contributions)];
+    
+    if (topContributor) {
+        cell.topContributorLabel.text = [NSString stringWithFormat:@"%@ (%@)", topContributor.name, @(topContributor.contributions)];
+        cell.topContributorLabel.hidden = NO;
+        cell.contributorSpinner.hidden = YES;
+        [cell.contributorSpinner stopAnimating];
+    } else {
+        cell.topContributorLabel.hidden = YES;
+        [cell.contributorSpinner startAnimating];
+        cell.contributorSpinner.hidden = NO;
+    }
+
     return cell;
 }
 
