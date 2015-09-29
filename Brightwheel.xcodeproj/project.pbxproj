@@ -145,14 +145,10 @@
 		D799893E1BB5453200FCEB19 /* BrightwheelTests */ = {
 			isa = PBXGroup;
 			children = (
-				D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */,
 				D799893F1BB5453200FCEB19 /* Supporting Files */,
 				D7B72BE81BB8A257005AFD80 /* BWGithubRepoTests.m */,
+				D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */,
 				D7B72BEA1BB8A273005AFD80 /* BWGithubRepoContributorTests.m */,
-				D7B72C041BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.h */,
-				D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */,
-				D76303701BBA512E00BCDE51 /* BWGithubAPIClient+Mock.h */,
-				D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */,
 			);
 			path = BrightwheelTests;
 			sourceTree = "<group>";
@@ -160,6 +156,10 @@
 		D799893F1BB5453200FCEB19 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D7B72C041BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.h */,
+				D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */,
+				D76303701BBA512E00BCDE51 /* BWGithubAPIClient+Mock.h */,
+				D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */,
 				D79989401BB5453200FCEB19 /* Info.plist */,
 			);
 			name = "Supporting Files";

@@ -17,9 +17,8 @@
 + (instancetype)contributorWithDictionary:(NSDictionary *)contributorDictionary {
     if (![contributorDictionary isKindOfClass:[NSDictionary class]]) return nil;
     BWGithubRepoContributor *contributor = [[BWGithubRepoContributor alloc] init];
-    contributor.name = contributorDictionary[CONTRIBUTOR_NAME_KEY] ? contributorDictionary[CONTRIBUTOR_NAME_KEY] : ANONYMOUS;
-    NSNumber *contributions = contributorDictionary[CONTRIBUTIONS_KEY];
-    contributor.contributions = contributions ? [contributions integerValue] : 0;
+    contributor.name = contributorDictionary[CONTRIBUTOR_NAME_KEY] != [NSNull null] ? contributorDictionary[CONTRIBUTOR_NAME_KEY] : ANONYMOUS;
+    contributor.contributions = contributorDictionary[CONTRIBUTIONS_KEY] != [NSNull null] ? [contributorDictionary[CONTRIBUTIONS_KEY] integerValue] : 0;
     return contributor;
 }
 

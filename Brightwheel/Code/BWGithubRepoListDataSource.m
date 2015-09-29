@@ -90,6 +90,7 @@ static const NSInteger kDefaultMaxNumberResults = -1;
         
         __weak typeof(self) weakSelf = self;
         [self.backgroundQueue addOperationWithBlock:^{
+            NSLog(@"On main thread: %@", [NSThread isMainThread] ? @"yes" : @"no");
             void (^completionBlock)(NSError *error, NSArray *repos, NSString *nextPageLink) = ^void(NSError *error, NSArray *repos, NSString *nextPageLink) {
                 if (error || repos == nil) {
                     dispatch_async(dispatch_get_main_queue(), ^{
