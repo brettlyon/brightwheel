@@ -27,7 +27,7 @@
 }
 
 + (instancetype)repoFromDictionary:(NSDictionary *)repoDictionary {
-    if (![repoDictionary isKindOfClass:[NSDictionary class]]) return nil;
+    if (![repoDictionary isKindOfClass:[NSDictionary class]] || repoDictionary.count == 0) return nil;
     BWGithubRepo *repo = [[BWGithubRepo alloc] init];
     repo.name = repoDictionary[REPO_NAME_KEY];
     repo.repoDescription = repoDictionary[REPO_DESCRIPTION_KEY] ? repoDictionary[REPO_DESCRIPTION_KEY] : NO_DESCRIPTION_MESSAGE;

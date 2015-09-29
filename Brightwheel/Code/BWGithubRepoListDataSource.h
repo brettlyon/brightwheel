@@ -18,7 +18,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface BWGithubRepoListDataSource : NSObject
+@interface BWGithubRepoListDataSource : NSObject <UITableViewDataSource>
 @property (assign, nonatomic) NSUInteger pageSize;
 @property (assign, nonatomic) NSUInteger fetchThreshold;
 @property (assign, nonatomic) NSInteger maxNumberResults;

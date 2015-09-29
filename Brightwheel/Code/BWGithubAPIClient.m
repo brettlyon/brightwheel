@@ -52,7 +52,6 @@
             NSError *serializationError;
             NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&serializationError];
             // If there was an error deserializing the JSON, then execute the completion block with the error and a nil value for the result
-            NSLog(@"%@", rawResults);
             if (serializationError) {
                 if (completion != nil) completion(error, nil, nil);
             } else {

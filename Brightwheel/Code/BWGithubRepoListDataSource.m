@@ -17,7 +17,7 @@
 #define LOADING_CELL_REUSE_ID   @"loading_cell"
 #define ERROR_CELL_REUSE_ID     @"error_cell"
 
-@interface BWGithubRepoListDataSource () <UITableViewDataSource, UITableViewDelegate>
+@interface BWGithubRepoListDataSource () <UITableViewDelegate>
 @property (assign, nonatomic) BOOL isInErrorState;
 @property (assign, atomic) BOOL fetchPending;
 @property (assign, atomic) BOOL areMoreResults;

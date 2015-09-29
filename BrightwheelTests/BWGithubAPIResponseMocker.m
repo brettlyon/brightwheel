@@ -7,6 +7,10 @@
 //
 
 #import "BWGithubAPIResponseMocker.h"
+#import "BWGithubAPIClient.h"
+#import "BWGithubRepo.h"
+#import "BWGithubRepoContributor.h"
+#import <objc/runtime.h>
 
 @implementation BWGithubAPIResponseMocker
 
@@ -173,5 +177,8 @@
     [mutableContributor removeObjectForKey:@"contributions"];
     return mutableContributor;
 }
+
+
+
 
 @end
