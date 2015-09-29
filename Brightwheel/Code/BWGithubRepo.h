@@ -34,6 +34,9 @@
 // The number of people who have starred the repo on Github
 @property (assign, nonatomic) NSUInteger numStars;
 
+// An array representing the number of commits per week for the past year for the repo
+@property (assign, nonatomic) NSArray *commitHistory;
+
 // Factory method that takes an array representing JSON results (multiple repos) from a request to the Github search api
 + (NSArray *)reposFromArray:(NSArray *)repoArray;
 

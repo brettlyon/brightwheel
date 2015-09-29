@@ -115,6 +115,7 @@ static const NSInteger kDefaultFetchThreshold = 5;
                     
                     for (NSUInteger i = preAddRepoCount; i < postAddRepoCount; i++) {
                         [self getTopContributorForRepoAtIndex:i];
+                        [self getCommitHistoryForRepoAtIndex:i];
                     }
                 }
             };
@@ -163,29 +164,44 @@ static const NSInteger kDefaultFetchThreshold = 5;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     repo.topContributor = topContributor;
                     
-                    // Reload the cell corresponding to that repo
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:repoIndex inSection:0];
-                    [self.tableView beginUpdates];
-                    [CATransaction setDisableActions:YES]; // Little trick to make sure the reload of the cell is not animated
-                    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                    [CATransaction setDisableActions:NO];
-                    [self.tableView endUpdates];
+                    [self reloadCellForIndex:repoIndex];
                 });
             }
         }];
     }
 }
 
-- (NSArray *)sortReposByStarsDescendingOrder:(NSArray *)repos {
-    // Sort the repos by stars before passing to the completion block
-    return [repos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        BWGithubRepo *repo1 = (BWGithubRepo *)obj1;
-        BWGithubRepo *repo2 = (BWGithubRepo *)obj2;
-        
-        if (repo1.numStars < repo2.numStars) return NSOrderedDescending;
-        if (repo1.numStars > repo2.numStars) return NSOrderedAscending;
-        return NSOrderedSame;
-    }];
+- (void)getCommitHistoryForRepoAtIndex:(NSUInteger)repoIndex {
+    __block BWGithubRepo *repo;
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if (self.repos.count > repoIndex) {
+            repo = self.repos[repoIndex];
+        }
+    });
+    
+    if (repo) {
+        [BWGithubAPIClient commitHistoryForRepo:repo completion:^(NSError *error, NSArray *commitsByWeek) {
+            if (!error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    repo.commitHistory = commitsByWeek;
+                    
+                    [self reloadCellForIndex:repoIndex];
+                });
+            }
+        }];
+    }
+}
+
+- (void)reloadCellForIndex:(NSUInteger)index {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // Reload the cell corresponding to that repo
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.tableView beginUpdates];
+        [CATransaction setDisableActions:YES]; // Little trick to make sure the reload of the cell is not animated
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [CATransaction setDisableActions:NO];
+        [self.tableView endUpdates];
+    });
 }
 
 #pragma mark - UITableView data source

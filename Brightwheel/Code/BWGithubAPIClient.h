@@ -30,7 +30,12 @@
 + (void)fetchNextPageOfRespositoriesWithLink:(NSString *)nextPageLink completion:(void (^)(NSError *error, NSArray *repos, NSString *nextPageLink))completion;
 
 /*
- Takes a repo, and synchronously fetches the top contributor for that repo.
+ Takes a repo, and asynchronously fetches the top contributor for that repo.
  */
 + (void)topContributorForRepo:(BWGithubRepo *)repo completion:(void (^)(NSError *error, BWGithubRepoContributor *topContributor))completion;
+
+/*
+ Takes a repo and asynchronously fetches the number of commits for that repo bucketed by week.
+ */
++ (void)commitHistoryForRepo:(BWGithubRepo *)repo completion:(void (^)(NSError *error, NSArray *commitsByWeek))completion;
 @end

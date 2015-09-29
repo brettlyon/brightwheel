@@ -139,6 +139,55 @@
     }
 }
 
++ (void)commitHistoryForRepo:(BWGithubRepo *)repo completion:(void (^)(NSError *error, NSArray *commitsByWeek))completion {
+    if (repo) {
+        if (repo.fullName == nil)  {
+            NSError *error = [NSError errorWithDomain:@"Brightwheel" code:5 userInfo:@{
+                                                                                       @"message": @"No repo id or repo owner if provided to find commit history with"
+                                                                                       }];
+            if (completion != nil) completion(error, nil);
+        }
+        
+        // Construct the url
+        NSString *urlString = [NSString stringWithFormat:@"%@repos/%@/stats/participation", GITHUB_API_BASE_URL, repo.fullName];
+        NSURL *requestUrl = [NSURL URLWithString:urlString];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestUrl];
+        request.HTTPMethod = @"GET";
+        
+        [self addHeadersToRequest:request];
+        
+        NSURLSession *urlSession = [NSURLSession sharedSession];
+        
+        NSURLSessionDataTask *fetchTopContributorTask = [urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error) {
+                if (completion != nil) completion(error, nil);
+            } else  {
+                NSError *serializationError;
+                id rawResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializationError];
+                if (serializationError) {
+                    if (completion != nil) completion(serializationError, nil);
+                } else {
+                    NSArray *commitHistory;
+                    if ([rawResults isKindOfClass:[NSDictionary class]]) {
+                        commitHistory = rawResults[@"all"];
+                    }
+                    
+                    if (commitHistory) {
+                        if (completion != nil) completion(nil, commitHistory);
+                    } else {
+                        NSError *error = [NSError errorWithDomain:@"Brightwheel" code:6 userInfo:@{
+                                                                                                   @"message": @"Unexpected result for commit history"
+                                                                                                   }];
+                        if (completion != nil) completion(error, nil);
+                    }
+                }
+            }
+        }];
+        
+        [fetchTopContributorTask resume];
+    }
+}
+
 + (NSString *)nextPageLinkFromResponse:(NSURLResponse *)response {
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
     NSString *linkHeader = httpResponse.allHeaderFields[LINK_HEADER];
