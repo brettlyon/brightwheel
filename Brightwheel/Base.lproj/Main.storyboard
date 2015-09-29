@@ -16,24 +16,89 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jxO-Am-k93" userLabel="Header view">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search repositories..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3RB-9q-WxN">
+                                        <rect key="frame" x="8" y="42" width="584" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="tQc-Ci-al6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="lOk-wj-EVx"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3RB-9q-WxN" secondAttribute="trailing" constant="8" id="LZB-uP-qsj"/>
+                                    <constraint firstAttribute="bottom" secondItem="3RB-9q-WxN" secondAttribute="bottom" constant="8" id="Tcn-Yx-t0J"/>
+                                    <constraint firstItem="3RB-9q-WxN" firstAttribute="leading" secondItem="jxO-Am-k93" secondAttribute="leading" constant="8" id="V2R-xa-llP"/>
+                                    <constraint firstAttribute="centerY" secondItem="3RB-9q-WxN" secondAttribute="centerY" id="sSh-yR-qpB"/>
+                                    <constraint firstAttribute="height" constant="80" id="u2S-sW-EaY"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="sSh-yR-qpB"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mrY-nd-95d">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="80" width="600" height="520"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5k-bd-0n5" userLabel="Drop shadow" customClass="BWGradientView">
+                                <rect key="frame" x="0.0" y="80" width="600" height="4"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="4" id="7Sw-7k-YBR"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QyR-4e-cTU" userLabel="Tap to dismiss keyboard gesture recognizer container">
+                                <rect key="frame" x="0.0" y="80" width="600" height="520"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Rbp-KY-n52" appends="YES" id="Le0-cE-X2o"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jxO-Am-k93" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="0VU-oo-EsO"/>
+                            <constraint firstAttribute="trailing" secondItem="jxO-Am-k93" secondAttribute="trailing" id="6YZ-AT-hQe"/>
+                            <constraint firstItem="mrY-nd-95d" firstAttribute="top" secondItem="jxO-Am-k93" secondAttribute="bottom" id="DIP-X4-AiC"/>
+                            <constraint firstItem="C5k-bd-0n5" firstAttribute="top" secondItem="jxO-Am-k93" secondAttribute="bottom" id="GqY-lp-1Yd"/>
                             <constraint firstItem="mrY-nd-95d" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="LbS-Kg-5Yg"/>
+                            <constraint firstItem="jxO-Am-k93" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Pcm-Rw-GNj"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="mrY-nd-95d" secondAttribute="bottom" id="T3U-lf-POD"/>
                             <constraint firstAttribute="trailing" secondItem="mrY-nd-95d" secondAttribute="trailing" id="cR8-dB-hps"/>
+                            <constraint firstAttribute="trailing" secondItem="C5k-bd-0n5" secondAttribute="trailing" id="f1N-h1-ozC"/>
+                            <constraint firstItem="QyR-4e-cTU" firstAttribute="top" secondItem="jxO-Am-k93" secondAttribute="bottom" id="gxf-71-6ZL"/>
+                            <constraint firstItem="QyR-4e-cTU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="iVM-ej-yyD"/>
+                            <constraint firstItem="C5k-bd-0n5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="q70-qT-i3t"/>
+                            <constraint firstAttribute="trailing" secondItem="QyR-4e-cTU" secondAttribute="trailing" id="w8b-RS-OHN"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="QyR-4e-cTU" secondAttribute="bottom" id="x0c-wp-cI3"/>
                             <constraint firstItem="mrY-nd-95d" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="yoK-HP-86k"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="yoK-HP-86k"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="searchTextField" destination="3RB-9q-WxN" id="qo3-xJ-GHq"/>
                         <outlet property="tableView" destination="mrY-nd-95d" id="ISQ-u6-bil"/>
+                        <outlet property="tapToDismissKeyboardContainer" destination="QyR-4e-cTU" id="W8h-iP-CKb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Rbp-KY-n52">
+                    <connections>
+                        <action selector="tapToDismissKeyboard:" destination="vXZ-lx-hvc" id="piy-nS-EMX"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>
