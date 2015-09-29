@@ -30,7 +30,6 @@
 
 static const NSInteger kDefaultPageSize = 10;
 static const NSInteger kDefaultFetchThreshold = 5;
-static const NSInteger kDefaultMaxNumberResults = -1;
 
 @implementation BWGithubRepoListDataSource
 
@@ -47,7 +46,6 @@ static const NSInteger kDefaultMaxNumberResults = -1;
         self.areMoreResults = YES;
         self.pageSize = kDefaultPageSize;
         self.fetchThreshold = kDefaultFetchThreshold;
-        self.maxNumberResults = kDefaultMaxNumberResults;
         self.backgroundQueue = [[NSOperationQueue alloc] init];
         self.backgroundQueue.maxConcurrentOperationCount = 1;
         self.pageSortingQueue = dispatch_queue_create("com.brightwheel.page_sorting_queue", DISPATCH_QUEUE_SERIAL);
@@ -83,6 +81,7 @@ static const NSInteger kDefaultMaxNumberResults = -1;
     if (![searchTerm isEqualToString:self.previousSearchTerm]) {
         self.previousSearchTerm = searchTerm;
         [self reset];
+        [self.tableView reloadData];
     }
     
     if (!self.fetchPending) {
@@ -90,7 +89,6 @@ static const NSInteger kDefaultMaxNumberResults = -1;
         
         __weak typeof(self) weakSelf = self;
         [self.backgroundQueue addOperationWithBlock:^{
-            NSLog(@"On main thread: %@", [NSThread isMainThread] ? @"yes" : @"no");
             void (^completionBlock)(NSError *error, NSArray *repos, NSString *nextPageLink) = ^void(NSError *error, NSArray *repos, NSString *nextPageLink) {
                 if (error || repos == nil) {
                     dispatch_async(dispatch_get_main_queue(), ^{
