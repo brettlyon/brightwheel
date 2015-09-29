@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D76303721BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m in Sources */ = {isa = PBXBuildFile; fileRef = D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */; };
 		D79989281BB5453200FCEB19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989271BB5453200FCEB19 /* main.m */; };
 		D799892B1BB5453200FCEB19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D799892A1BB5453200FCEB19 /* AppDelegate.m */; };
 		D79989311BB5453200FCEB19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D799892F1BB5453200FCEB19 /* Main.storyboard */; };
 		D79989331BB5453200FCEB19 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D79989321BB5453200FCEB19 /* Images.xcassets */; };
 		D79989361BB5453200FCEB19 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989341BB5453200FCEB19 /* LaunchScreen.xib */; };
-		D79989421BB5453200FCEB19 /* BrightwheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989411BB5453200FCEB19 /* BrightwheelTests.m */; };
 		D79989641BB546D700FCEB19 /* BWGithubAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989501BB546D700FCEB19 /* BWGithubAPIClient.m */; };
 		D79989651BB546D700FCEB19 /* BWGithubErrorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989521BB546D700FCEB19 /* BWGithubErrorTableViewCell.m */; };
 		D79989661BB546D700FCEB19 /* BWGithubErrorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989531BB546D700FCEB19 /* BWGithubErrorTableViewCell.xib */; };
@@ -24,6 +24,10 @@
 		D799896D1BB546D700FCEB19 /* BWGithubRepoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989601BB546D700FCEB19 /* BWGithubRepoTableViewCell.m */; };
 		D799896E1BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D79989611BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib */; };
 		D799896F1BB546D700FCEB19 /* BWStarredGithubRepoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D79989631BB546D700FCEB19 /* BWStarredGithubRepoViewController.m */; };
+		D7B72BE71BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */; };
+		D7B72BE91BB8A257005AFD80 /* BWGithubRepoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B72BE81BB8A257005AFD80 /* BWGithubRepoTests.m */; };
+		D7B72BEB1BB8A273005AFD80 /* BWGithubRepoContributorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B72BEA1BB8A273005AFD80 /* BWGithubRepoContributorTests.m */; };
+		D7B72C061BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D76303701BBA512E00BCDE51 /* BWGithubAPIClient+Mock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BWGithubAPIClient+Mock.h"; sourceTree = "<group>"; };
+		D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BWGithubAPIClient+Mock.m"; sourceTree = "<group>"; };
 		D79989221BB5453200FCEB19 /* Brightwheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brightwheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79989261BB5453200FCEB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D79989271BB5453200FCEB19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -47,7 +53,6 @@
 		D79989351BB5453200FCEB19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D799893B1BB5453200FCEB19 /* BrightwheelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrightwheelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79989401BB5453200FCEB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D79989411BB5453200FCEB19 /* BrightwheelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrightwheelTests.m; sourceTree = "<group>"; };
 		D799894F1BB546D700FCEB19 /* BWGithubAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubAPIClient.h; path = Code/BWGithubAPIClient.h; sourceTree = "<group>"; };
 		D79989501BB546D700FCEB19 /* BWGithubAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWGithubAPIClient.m; path = Code/BWGithubAPIClient.m; sourceTree = "<group>"; };
 		D79989511BB546D700FCEB19 /* BWGithubErrorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWGithubErrorTableViewCell.h; path = Code/BWGithubErrorTableViewCell.h; sourceTree = "<group>"; };
@@ -67,6 +72,11 @@
 		D79989611BB546D700FCEB19 /* BWGithubRepoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BWGithubRepoTableViewCell.xib; path = Code/BWGithubRepoTableViewCell.xib; sourceTree = "<group>"; };
 		D79989621BB546D700FCEB19 /* BWStarredGithubRepoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWStarredGithubRepoViewController.h; path = Code/BWStarredGithubRepoViewController.h; sourceTree = "<group>"; };
 		D79989631BB546D700FCEB19 /* BWStarredGithubRepoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWStarredGithubRepoViewController.m; path = Code/BWStarredGithubRepoViewController.m; sourceTree = "<group>"; };
+		D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWGithubRepoListDataSourceTests.m; sourceTree = "<group>"; };
+		D7B72BE81BB8A257005AFD80 /* BWGithubRepoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWGithubRepoTests.m; sourceTree = "<group>"; };
+		D7B72BEA1BB8A273005AFD80 /* BWGithubRepoContributorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWGithubRepoContributorTests.m; sourceTree = "<group>"; };
+		D7B72C041BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWGithubAPIResponseMocker.h; sourceTree = "<group>"; };
+		D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWGithubAPIResponseMocker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,8 +145,14 @@
 		D799893E1BB5453200FCEB19 /* BrightwheelTests */ = {
 			isa = PBXGroup;
 			children = (
-				D79989411BB5453200FCEB19 /* BrightwheelTests.m */,
+				D7B72BE61BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m */,
 				D799893F1BB5453200FCEB19 /* Supporting Files */,
+				D7B72BE81BB8A257005AFD80 /* BWGithubRepoTests.m */,
+				D7B72BEA1BB8A273005AFD80 /* BWGithubRepoContributorTests.m */,
+				D7B72C041BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.h */,
+				D7B72C051BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m */,
+				D76303701BBA512E00BCDE51 /* BWGithubAPIClient+Mock.h */,
+				D76303711BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m */,
 			);
 			path = BrightwheelTests;
 			sourceTree = "<group>";
@@ -340,7 +356,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D79989421BB5453200FCEB19 /* BrightwheelTests.m in Sources */,
+				D7B72C061BB8CC0B005AFD80 /* BWGithubAPIResponseMocker.m in Sources */,
+				D7B72BE71BB8A22D005AFD80 /* BWGithubRepoListDataSourceTests.m in Sources */,
+				D7B72BEB1BB8A273005AFD80 /* BWGithubRepoContributorTests.m in Sources */,
+				D7B72BE91BB8A257005AFD80 /* BWGithubRepoTests.m in Sources */,
+				D76303721BBA512E00BCDE51 /* BWGithubAPIClient+Mock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
